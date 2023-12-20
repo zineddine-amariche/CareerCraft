@@ -1,7 +1,7 @@
 import { observer } from "mobx-react-lite"
 import React, { FC } from "react"
 import { Image, ImageStyle, TextStyle, View, ViewStyle } from "react-native"
-import { Button, Text } from "app/components"
+import { Button, ListItem, Text, Toggle } from "app/components"
 import { isRTL } from "../i18n"
 import { useStores } from "../models"
 import { AppStackScreenProps } from "../navigators"
@@ -36,7 +36,7 @@ export const WelcomeScreen: FC<WelcomeScreenProps> = observer(function WelcomeSc
 
   return (
     <View style={$container}>
-      <View style={$topContainer}>
+      {/* <View style={$topContainer}>
         <Image style={$welcomeLogo} source={welcomeLogo} resizeMode="contain" />
         <Text
           testID="welcome-heading"
@@ -57,7 +57,13 @@ export const WelcomeScreen: FC<WelcomeScreenProps> = observer(function WelcomeSc
           tx="welcomeScreen.letsGo"
           onPress={goNext}
         />
-      </View>
+      </View> */}
+      {/* <Toggle
+        value={3}
+        onValueChange={()=>{}}
+        labelTx="login.rememberUsername"
+        labelTxOptions={{ username: "john" }}
+      /> */}
     </View>
   )
 })
