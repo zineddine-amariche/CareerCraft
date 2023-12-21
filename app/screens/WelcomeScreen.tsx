@@ -1,111 +1,114 @@
 import { observer } from "mobx-react-lite"
-import React, { FC } from "react"
+import React, { FC, useState } from "react"
 import { Image, ImageStyle, TextStyle, View, ViewStyle } from "react-native"
-import { Button, ListItem, Text, Toggle } from "app/components"
-import { isRTL } from "../i18n"
-import { useStores } from "../models"
-import { AppStackScreenProps } from "../navigators"
+import { Button, Text } from "../components"
 import { colors, spacing } from "../theme"
-import { useHeader } from "../utils/useHeader"
 import { useSafeAreaInsetsStyle } from "../utils/useSafeAreaInsetsStyle"
+import { AppStackScreenProps } from "app/navigators"
+import { getLocale } from "app/i18n"
+import { useStores } from "app/models"
 
 const welcomeLogo = require("../../assets/images/logo.png")
-const welcomeFace = require("../../assets/images/welcome-face.png")
 
 interface WelcomeScreenProps extends AppStackScreenProps<"Welcome"> {}
 
 export const WelcomeScreen: FC<WelcomeScreenProps> = observer(function WelcomeScreen(_props) {
+  const $bottomContainerInsets = useSafeAreaInsetsStyle(["bottom"])
   const { navigation } = _props
+
+  const [step, setStep] = useState(1)
+
   const {
-    authenticationStore: { logout },
+    mushafStore: { setOnboardingCompleted },
   } = useStores()
 
   function goNext() {
-    navigation.navigate("Demo", { screen: "DemoShowroom", params: {} })
+    setOnboardingCompleted(true)
+    navigation.navigate("HomeScreen")
   }
 
-  useHeader(
-    {
-      rightTx: "common.logOut",
-      onRightPress: logout,
-    },
-    [logout],
-  )
-
-  const $bottomContainerInsets = useSafeAreaInsetsStyle(["bottom"])
+  const dir = getLocale() === "ar" ? "rtl" : "ltr"
 
   return (
     <View style={$container}>
-      {/* <View style={$topContainer}>
+      <View style={$topContainer}>
         <Image style={$welcomeLogo} source={welcomeLogo} resizeMode="contain" />
         <Text
           testID="welcome-heading"
           style={$welcomeHeading}
-          tx="welcomeScreen.readyForLaunch"
+          tx="welcomeScreen.appName"
           preset="heading"
         />
-        <Text tx="welcomeScreen.exciting" preset="subheading" />
-        <Image style={$welcomeFace} source={welcomeFace} resizeMode="contain" />
+        <Text tx="welcomeScreen.shortDescription" preset="subheading" style={$welcomeSubheading} />
       </View>
 
-      <View style={[$bottomContainer, $bottomContainerInsets]}>
-        <Text tx="welcomeScreen.postscript" size="md" />
-
-        <Button
-          testID="next-screen-button"
-          preset="reversed"
-          tx="welcomeScreen.letsGo"
-          onPress={goNext}
-        />
-      </View> */}
-      {/* <Toggle
-        value={3}
-        onValueChange={()=>{}}
-        labelTx="login.rememberUsername"
-        labelTxOptions={{ username: "john" }}
-      /> */}
+      <View style={[{ flex: 1, backgroundColor: colors.surfaceSecondary }, $bottomContainerInsets]}>
+        <View style={[$bottomContainer]}>
+          {step === 1 && (
+            <>
+              <Text
+                tx="welcomeScreen.description"
+                size="md"
+                style={[$description, { writingDirection: dir }]}
+                adjustsFontSizeToFit={true}
+              />
+              <View style={$bottomButton}>
+                <Button
+                  testID="next-screen-button"
+                  preset="filled"
+                  tx="welcomeScreen.continue"
+                  onPress={() => goNext()}
+                />
+              </View>
+            </>
+          )}
+        </View>
+      </View>
     </View>
   )
 })
 
 const $container: ViewStyle = {
   flex: 1,
-  backgroundColor: colors.background,
+  backgroundColor: colors.surfacePrimary,
 }
 
 const $topContainer: ViewStyle = {
-  flexShrink: 1,
-  flexGrow: 1,
-  flexBasis: "57%",
+  flex: 2,
   justifyContent: "center",
   paddingHorizontal: spacing.lg,
 }
 
 const $bottomContainer: ViewStyle = {
-  flexShrink: 1,
-  flexGrow: 0,
-  flexBasis: "43%",
-  backgroundColor: colors.palette.neutral100,
+  flex: 1,
+  gap: spacing.md,
   borderTopLeftRadius: 16,
   borderTopRightRadius: 16,
-  paddingHorizontal: spacing.lg,
+  padding: spacing.lg,
   justifyContent: "space-around",
 }
-const $welcomeLogo: ImageStyle = {
-  height: 88,
-  width: "100%",
-  marginBottom: spacing.xxl,
+
+const $description: ViewStyle = {
+  flex: 1,
 }
 
-const $welcomeFace: ImageStyle = {
-  height: 169,
-  width: 269,
-  position: "absolute",
-  bottom: -47,
-  right: -80,
-  transform: [{ scaleX: isRTL ? -1 : 1 }],
+const $bottomButton: ViewStyle = {
+  flexDirection: "column",
+  justifyContent: "flex-end",
+  gap: spacing.xs,
+}
+
+const $welcomeLogo: ImageStyle = {
+  height: 160,
+  width: "100%",
+  marginBottom: spacing.lg,
 }
 
 const $welcomeHeading: TextStyle = {
   marginBottom: spacing.md,
+  textAlign: "center",
+}
+
+const $welcomeSubheading: TextStyle = {
+  textAlign: "center",
 }
