@@ -1,12 +1,12 @@
 import i18n from "i18n-js"
-import React from "react"
+import React, { useMemo } from "react"
 import { StyleProp, Text as RNText, TextProps as RNTextProps, TextStyle } from "react-native"
 import { isRTL, translate, TxKeyPath } from "../i18n"
-import { colors, typography } from "../theme"
+import { colors, spacing, typography } from "../theme"
 
 type Sizes = keyof typeof $sizeStyles
 type Weights = keyof typeof typography.primary
-type Presets = keyof typeof $presets
+type Presets = any
 
 export interface TextProps extends RNTextProps {
   /**
@@ -42,6 +42,11 @@ export interface TextProps extends RNTextProps {
    * Children components.
    */
   children?: React.ReactNode
+
+  /**
+   * Fonts Lang Style
+   */
+  fontLang?: "arabic" | "latin"
 }
 
 /**
@@ -51,19 +56,39 @@ export interface TextProps extends RNTextProps {
  * - [Documentation and Examples](https://github.com/infinitered/ignite/blob/master/docs/Components-Text.md)
  */
 export function Text(props: TextProps) {
-  const { weight, size, tx, txOptions, text, children, style: $styleOverride, ...rest } = props
+  const {
+    weight,
+    size,
+    tx,
+    txOptions,
+    text,
+    children,
+    style: $styleOverride,
+    fontLang,
+    ...rest
+  } = props
 
   const i18nText = tx && translate(tx, txOptions)
   const content = i18nText || text || children
 
-  const preset: Presets = props.preset ?? "default"
-  const $styles: StyleProp<TextStyle> = [
-    $rtlStyle,
-    $presets[preset],
-    weight && $fontWeightStyles[weight],
-    size && $sizeStyles[size],
-    $styleOverride,
-  ]
+  const preset = props.preset ?? "default"
+
+  const isRTLLocal = !fontLang ? isRTL : fontLang === "arabic"
+
+  const font = isRTLLocal ? typography.primary : typography.primaryLatin
+
+  const sizes = isRTLLocal ? $sizeStyles : $sizeStylesLatin
+
+  const $styles = useMemo(
+    () => [
+      $rtlStyle(isRTLLocal),
+      $presets(font, sizes)[preset],
+      $fontWeightStyles(font)[weight],
+      sizes[size],
+      $styleOverride,
+    ],
+    [isRTLLocal, font, preset, weight, size, $styleOverride],
+  )
 
   return (
     <RNText {...rest} style={$styles}>
@@ -73,7 +98,8 @@ export function Text(props: TextProps) {
 }
 
 const $sizeStyles = {
-  xxl: { fontSize: 36, lineHeight: 44 } satisfies TextStyle,
+  xxxl: { fontSize: 36, lineHeight: 44 } satisfies TextStyle,
+  xxl: { fontSize: 28, lineHeight: 36 } satisfies TextStyle,
   xl: { fontSize: 24, lineHeight: 34 } satisfies TextStyle,
   lg: { fontSize: 20, lineHeight: 32 } satisfies TextStyle,
   md: { fontSize: 18, lineHeight: 26 } satisfies TextStyle,
@@ -82,28 +108,78 @@ const $sizeStyles = {
   xxs: { fontSize: 12, lineHeight: 18 } satisfies TextStyle,
 }
 
-const $fontWeightStyles = Object.entries(typography.primary).reduce((acc, [weight, fontFamily]) => {
-  return { ...acc, [weight]: { fontFamily } }
-}, {}) as Record<Weights, TextStyle>
-
-const $baseStyle: StyleProp<TextStyle> = [
-  $sizeStyles.sm,
-  $fontWeightStyles.normal,
-  { color: colors.text },
-]
-
-const $presets = {
-  default: $baseStyle,
-
-  bold: [$baseStyle, $fontWeightStyles.bold] as StyleProp<TextStyle>,
-
-  heading: [$baseStyle, $sizeStyles.xxl, $fontWeightStyles.bold] as StyleProp<TextStyle>,
-
-  subheading: [$baseStyle, $sizeStyles.lg, $fontWeightStyles.medium] as StyleProp<TextStyle>,
-
-  formLabel: [$baseStyle, $fontWeightStyles.medium] as StyleProp<TextStyle>,
-
-  formHelper: [$baseStyle, $sizeStyles.sm, $fontWeightStyles.normal] as StyleProp<TextStyle>,
+const $sizeStylesLatin = {
+  xxxl: { fontSize: 32, lineHeight: 40 },
+  xxl: { fontSize: 24, lineHeight: 32 },
+  xl: { fontSize: 20, lineHeight: 28 },
+  lg: { fontSize: 18, lineHeight: 24 },
+  md: { fontSize: 16, lineHeight: 22 },
+  sm: { fontSize: 14, lineHeight: 20 },
+  xs: { fontSize: 12, lineHeight: 18 },
+  xxs: { fontSize: 10, lineHeight: 16 },
 }
 
-const $rtlStyle: TextStyle = isRTL ? { writingDirection: "rtl" } : {}
+const $fontWeightStyles = (font) =>
+  Object.entries(font).reduce((acc, [weight, fontFamily]) => {
+    return { ...acc, [weight]: { fontFamily } }
+  }, {}) as Record<Weights, TextStyle>
+
+const $baseStyle = (font, sizes) => [
+  $fontWeightStyles(font).normal,
+  sizes.sm,
+  { color: colors.textPrimary, textAlign: "left" },
+]
+
+const $presets = (font, sizes) => ({
+  default: $baseStyle(font, sizes),
+  bold: [$baseStyle(font, sizes), $fontWeightStyles(font).bold] as StyleProp<TextStyle>,
+  heading: [
+    $baseStyle(font, sizes),
+    sizes.xxxl,
+    $fontWeightStyles(font).bold,
+    { color: colors.textBrand },
+  ] as StyleProp<TextStyle>,
+
+  subheading: [
+    $baseStyle(font, sizes),
+    sizes.lg,
+    $fontWeightStyles(font).medium,
+  ] as StyleProp<TextStyle>,
+
+  formLabel: [$baseStyle(font, sizes), $fontWeightStyles(font).medium] as StyleProp<TextStyle>,
+
+  formHelper: [
+    $baseStyle(font, sizes),
+    sizes.sm,
+    $fontWeightStyles(font).normal,
+  ] as StyleProp<TextStyle>,
+
+  title: [
+    $baseStyle(font, sizes),
+    sizes.xxl,
+    $fontWeightStyles(font).medium,
+    { color: colors.textBrand },
+  ] as StyleProp<TextStyle>,
+
+  ayah: [
+    $baseStyle(font, sizes),
+    $sizeStyles.sm,
+    {
+      color: colors.textPrimary,
+      fontFamily: typography.warch.normal,
+      lineHeight: spacing.xl,
+    },
+  ] as StyleProp<TextStyle>,
+
+  books: [
+    $baseStyle(font, sizes),
+    $sizeStyles.sm,
+    {
+      color: colors.textPrimary,
+      fontFamily: typography.books.normal,
+      lineHeight: spacing.xl,
+    },
+  ] as StyleProp<TextStyle>,
+})
+
+const $rtlStyle = (isRTL) => (isRTL ? { writingDirection: "rtl" } : {})
