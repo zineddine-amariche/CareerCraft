@@ -5,17 +5,20 @@ import { colors, metrics, spacing } from "app/theme"
 import { TxKeyPath } from "app/i18n"
 import { useSideHeader } from "app/utils/useSideHeader"
 import { SideStackScreenProps } from "app/navigators/SideNavigator"
+import { navigate } from "app/navigators"
 
 interface MenuScreenProps extends SideStackScreenProps<"Menu"> {}
 
 const drawerList = [
-  { name: "menus.index", icon: "index", navigateTo: "Home" },
-  { name: "menus.masahif", icon: "mushaf", navigateTo: "Details" },
-  { name: "menus.settings", icon: "cog", navigateTo: "OnBoarding" },
+  { name: "menus.index", icon: "index", navigateTo: "Home", inSideMenu: true },
+  { name: "menus.masahif", icon: "mushaf", navigateTo: "Details", inSideMenu: true },
+  { name: "menus.settings", icon: "cog", navigateTo: "OnBoarding", inSideMenu: true },
+  { name: "menus.prejcts", icon: "cog", navigateTo: "Languages", inSideMenu: false },
 ]
 
 export const MenuScreen: FC<MenuScreenProps> = function MenuScreen(_props) {
   useSideHeader({ titleTx: "menus.home" })
+  const { navigation } = _props
 
   return (
     <View style={$container}>
@@ -25,7 +28,11 @@ export const MenuScreen: FC<MenuScreenProps> = function MenuScreen(_props) {
             key={item.name}
             style={$itemContainer}
             onPress={() => {
-              navigate(item.navigateTo)
+              if (item.inSideMenu) {
+                navigate(item.navigateTo)
+              } else {
+                navigation.navigate(item.navigateTo)
+              }
             }}
           >
             <Icon size={30} icon={item.icon} color={colors.iconPrimary} />
