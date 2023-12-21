@@ -10,6 +10,7 @@ import { subNavigationRef } from "./navigationUtilities"
 export type SideStackParamList = {
   Menu: undefined
   details: undefined
+  Languages: undefined
 }
 
 export type SideStackScreenProps<T extends keyof SideStackParamList> = NativeStackScreenProps<
@@ -39,6 +40,7 @@ export const SideNavigator = observer(function SideNavigator(props: SideNavigati
         initialRouteName={"Menu"}
       >
         <Stack.Screen name="Menu" component={Screens.MenuScreen} />
+        <Stack.Screen name="Languages" component={Screens.LanguagesScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   )

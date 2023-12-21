@@ -20,6 +20,8 @@ import { DemoNavigator, DemoTabParamList } from "./DemoNavigator"
 import { navigationRef, useBackButtonHandler } from "./navigationUtilities"
 import { colors } from "app/theme"
 import { HomeNavigator } from "./HomeNavigator"
+import { useStores } from "app/models"
+import { useKeepAwake } from "expo-keep-awake"
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -43,6 +45,8 @@ export type AppStackParamList = {
   Menu: undefined
   OnBoarding: undefined
   Details: undefined
+  Languages: undefined
+  OnboardingLanguages: undefined
   // IGNITE_GENERATOR_ANCHOR_APP_STACK_PARAM_LIST
 }
 
@@ -61,14 +65,19 @@ export type AppStackScreenProps<T extends keyof AppStackParamList> = NativeStack
 const Stack = createNativeStackNavigator<AppStackParamList>()
 
 const AppStack = observer(function AppStack() {
-
+  useKeepAwake()
+  const {
+    mushafStore: { locale, onboardingCompleted },
+  } = useStores()
   return (
     <Stack.Navigator
       screenOptions={{ headerShown: false, navigationBarColor: colors.background }}
-      initialRouteName={"OnBoarding"}
+      initialRouteName={!locale ? "OnboradingLanguages" : onboardingCompleted ? "HomeScreen" : "Welcome"}
     >
-      <Stack.Screen name="OnBoarding" component={Screens.OnBoardingScreen} />
-      <Stack.Screen name="Details" component={Screens.DetailsScreen} />
+      <Stack.Screen name="OnboradingLanguages" component={Screens.OnboardingLanguagesScreen} />
+
+      {/* <Stack.Screen name="OnBoarding" component={Screens.OnBoardingScreen} /> */}
+      {/* <Stack.Screen name="Details" component={Screens.DetailsScreen} /> */}
       <Stack.Screen name="Welcome" component={Screens.WelcomeScreen} />
       <Stack.Screen name="Demo" component={DemoNavigator} />
       <Stack.Screen name="HomeScreen" component={HomeNavigator} />

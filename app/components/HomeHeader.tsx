@@ -13,9 +13,7 @@ import { ExtendedEdge, useSafeAreaInsetsStyle } from "../utils/useSafeAreaInsets
 import { Icon, IconTypes } from "./Icon"
 import { Text, TextProps } from "./Text"
 import Animated, { useSharedValue, useAnimatedStyle, withTiming } from "react-native-reanimated"
-import { useStores } from "app/models"
 import { observer } from "mobx-react-lite"
-import { getLocale } from "app/i18n/i18n"
 import { sideNavigate } from "app/navigators/navigationUtilities"
 
 export interface HomeHeaderProps {
@@ -80,30 +78,6 @@ const HomeHeader = observer((props: HomeHeaderProps) => {
 
   const $extraHeightAnimatedStyle = useAnimatedStyle(() => ({ height: translateHeight.value }))
 
-  // const {
-  //   mushafStore: {
-  //     selectedPage,
-  //     selectedMushaf,
-  //     bookmark,
-  //     setBookmarkVerse,
-  //     pageDetails: {
-  //       // TODO : get all suwar of page
-  //       surahDetails: { name: surahName },
-  //       juz,
-  //       hizb,
-  //       verseNo,
-  //     },
-  //   },
-  // } = useStores()
-
-  // const handleBookmark = () => {
-  //   if (Quran.getPageByVerse(bookmark?.verse ?? 1, selectedMushaf) !== selectedPage)
-  //     setBookmarkVerse(Quran.getVerseNoByPage(selectedPage, selectedMushaf))
-  //   else {
-  //     sideNavigate("Bookmarks")
-  //   }
-  // }
-
   return (
     <Animated.View style={[$container, $containerStyleOverride, $containerAnimatedStyle]}>
       <View
@@ -132,35 +106,10 @@ const HomeHeader = observer((props: HomeHeaderProps) => {
             iconColor={colors.iconPrimary}
             onPress={() => sideNavigate("Search")}
           />
-          {/* {verseNo > 0 && (
-            <HeaderAction
-              icon={
-                Quran.getPageByVerse(bookmark?.verse ?? 1, selectedMushaf) === selectedPage
-                  ? "bookmarkOn"
-                  : "bookmarkOff"
-              }
-              iconColor={colors.iconPrimary}
-              onPress={handleBookmark}
-              onLongPress={() => {
-                sideNavigate("Bookmarks")
-              }}
-            />
-          )} */}
         </View>
       </View>
       <Animated.View style={[$extraHeight, $extraHeightAnimatedStyle]}></Animated.View>
-      <View style={$topInfo}>
-        {/* <Text
-          tx={[
-            translate("quran.surah", {
-              surah: surahName?.[getLocale()] ?? surahName.ar,
-            }),
-          ]}
-        />
-        <Text
-          texts={[translate("quran.hizb", { hizb }), translate("quran.juz", { juz })]}
-        /> */}
-      </View>
+      <View style={$topInfo}></View>
     </Animated.View>
   )
 })

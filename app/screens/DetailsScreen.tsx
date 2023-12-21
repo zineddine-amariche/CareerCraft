@@ -1,7 +1,6 @@
 import React, { FC } from "react"
 import { observer } from "mobx-react-lite"
-import { ViewStyle } from "react-native"
-import { AppStackScreenProps } from "app/navigators"
+import { AppStackScreenProps, navigate } from "app/navigators"
 
 import {
   Text,
@@ -86,7 +85,7 @@ const Header = ({ scrollY }) => {
           zIndex: 2,
         }}
         onPress={() => {
-          navigation.goBack()
+          navigate('Home')
         }}
       >
         <Feather name="chevron-left" size={24} color={colors.headerText} />
