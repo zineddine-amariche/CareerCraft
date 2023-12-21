@@ -1,14 +1,15 @@
 import { useState, useEffect, useRef } from "react"
 import { BackHandler, Platform } from "react-native"
 import {
+  DrawerActions,
   NavigationState,
-  PartialState,
   createNavigationContainerRef,
 } from "@react-navigation/native"
 import Config from "../config"
 import type { PersistNavigationConfig } from "../config/config.base"
 import { useIsMounted } from "../utils/useIsMounted"
 import type { AppStackParamList, NavigationProps } from "./AppNavigator"
+import { SideStackParamList } from "./SideNavigator"
 
 import * as storage from "../utils/storage"
 
@@ -25,12 +26,15 @@ type Storage = typeof storage
  * nested navigators, you'll need to use the `useNavigation` with the stack navigator's ParamList type.
  */
 export const navigationRef = createNavigationContainerRef<AppStackParamList>()
+export const subNavigationRef = createNavigationContainerRef<SideStackParamList>()
 
 /**
  * Gets the current screen from any navigation state.
  */
-export function getActiveRouteName(state: NavigationState | PartialState<NavigationState>): string {
-  const route = state.routes[state.index ?? 0]
+export function getActiveRouteName(
+  state: ReturnType<typeof navigationRef.getRootState>,
+): keyof AppStackParamList {
+  const route = state.routes[state.index]
 
   // Found the active route -- return the name
   if (!route.state) return route.name as keyof AppStackParamList
@@ -115,24 +119,22 @@ export function useNavigationPersistence(storage: Storage, persistenceKey: strin
 
   const routeNameRef = useRef<keyof AppStackParamList | undefined>()
 
-  const onNavigationStateChange = (state: NavigationState | undefined) => {
+  const onNavigationStateChange: NavigationProps["onStateChange"] = (state) => {
     const previousRouteName = routeNameRef.current
-    if (state !== undefined) {
-      const currentRouteName = getActiveRouteName(state)
+    const currentRouteName = getActiveRouteName(state)
 
-      if (previousRouteName !== currentRouteName) {
-        // track screens.
-        if (__DEV__) {
-          console.tron.log?.(currentRouteName)
-        }
+    if (previousRouteName !== currentRouteName) {
+      // track screens.
+      if (__DEV__) {
+        console.log(currentRouteName)
       }
-
-      // Save the current route name for later comparison
-      routeNameRef.current = currentRouteName as keyof AppStackParamList
-
-      // Persist state to storage
-      storage.save(persistenceKey, state)
     }
+
+    // Save the current route name for later comparison
+    routeNameRef.current = currentRouteName
+
+    // Persist state to storage
+    storage.save(persistenceKey, state)
   }
 
   const restoreState = async () => {
@@ -156,10 +158,35 @@ export function useNavigationPersistence(storage: Storage, persistenceKey: strin
  * prop. If you have access to the navigation prop, do not use this.
  * @see https://reactnavigation.org/docs/navigating-without-navigation-prop/
  */
-export function navigate(name: unknown, params?: unknown) {
+export function navigate(...args: Parameters<typeof navigationRef.navigate>) {
   if (navigationRef.isReady()) {
-    // @ts-expect-error
-    navigationRef.navigate(name as never, params as never)
+    navigationRef.navigate(...args)
+  }
+}
+
+export function sideNavigate(...args: Parameters<typeof subNavigationRef.navigate>) {
+  if (navigationRef.isReady()) {
+    navigationRef.dispatch(DrawerActions.openDrawer())
+  }
+  if (
+    !args.length &&
+    !["TafaseerDetails" || "TarajimDetails"].includes(subNavigationRef.getCurrentRoute()?.name)
+  ) {
+    subNavigationRef.navigate("Menu")
+  } else if (subNavigationRef.isReady() && args.length) {
+    subNavigationRef.navigate(...args)
+  }
+}
+
+export function sideNavigateBack() {
+  if (subNavigationRef.isReady()) {
+    subNavigationRef.navigate("Menu")
+  }
+}
+
+export function closeDrawer() {
+  if (navigationRef.isReady()) {
+    navigationRef.dispatch(DrawerActions.closeDrawer())
   }
 }
 
