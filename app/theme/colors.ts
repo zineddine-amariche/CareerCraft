@@ -1,34 +1,32 @@
 // TODO: write documentation for colors and palette in own markdown file and add links from here
 
-const palette: Record<string, string> = {
-  neutral100: "#FFFFFF",
-  neutral200: "#F4F2F1",
-  neutral300: "#D7CEC9",
-  neutral400: "#B6ACA6",
-  neutral500: "#978F8A",
-  neutral600: "#564E4A",
-  neutral700: "#3C3836",
-  neutral800: "#191015",
-  neutral900: "#000000",
+const palette = {
+  grey50: "#F1F1F1",
+  grey200: "#D3D3D3",
+  grey400: "#AFAFAF",
+  grey600: "#7C7C7C",
+  grey800: "#343434",
+  grey900: "#202020",
 
-  primary100: "#F4E0D9",
-  primary200: "#E8C1B4",
-  primary300: "#DDA28E",
-  primary400: "#D28468",
-  primary500: "#C76542",
-  primary600: "#A54F31",
+  neutral50: "#FBF8F3",
+  neutral100: "#F6EEE4",
+  neutral150: "#EFE1CF",
+  neutral200: "#E8D4BA",
+  neutral300: "#DAB990",
+  neutral400: "#CC9F66",
+  neutral500: "#BB843E",
+  neutral600: "#916630",
+  neutral700: "#674922",
+  neutral800: "#3D2B14",
+  neutral900: "#130D06",
+  neutralOverlay: "#AE9F8B",
 
-  secondary100: "#DCDDE9",
-  secondary200: "#BCC0D6",
-  secondary300: "#9196B9",
-  secondary400: "#626894",
-  secondary500: "#41476E",
-
-  accent100: "#FFEED4",
-  accent200: "#FFE1B2",
-  accent300: "#FDD495",
-  accent400: "#FBC878",
-  accent500: "#FFBB50",
+  primary50: "#D2E3CD",
+  primary200: "#96C290",
+  primary400: "#679A64",
+  primary600: "#476930",
+  primary800: "#1B3319",
+  primary900: "#0F240F",
 
   angry100: "#F2D6CD",
   angry500: "#C03403",
@@ -49,13 +47,21 @@ export const colors = {
    */
   transparent: "rgba(0, 0, 0, 0)",
   /**
-   * The default text color in many components.
+   * A helper for making something white.
    */
-  text: palette.neutral800,
+  white: "white",
+  whiteTransparent: "rgba(255, 255, 255, 0.3)",
+  dimTransparent: "rgba(0, 0, 0, 0.3)",
   /**
-   * Secondary text information.
+   * Text color in many components.
    */
-  textDim: palette.neutral600,
+  textPrimary: palette.grey900,
+  textSecondary: palette.grey600,
+  textBrand: palette.primary600,
+  textBrandSecondary: palette.neutral500,
+  textBrandSecondaryDark: palette.neutral600,
+  textInvert: palette.grey50,
+  textDim: palette.grey400,
   /**
    * The default color of the screen background.
    */
@@ -67,7 +73,7 @@ export const colors = {
   /**
    * The main tinting color.
    */
-  tint: palette.primary500,
+  tint: palette.primary600,
   /**
    * A subtle color used for lines.
    */
@@ -81,4 +87,31 @@ export const colors = {
    *
    */
   errorBackground: palette.angry100,
+
+  /**
+   * Surface
+   */
+  surfaceDark: palette.neutralOverlay,
+  surfacePrimary: palette.neutral200,
+  surfaceSecondaryPlus: palette.neutral150,
+  surfaceSecondary: palette.neutral100,
+  surfaceInvert: palette.neutral700,
+  surfaceBrand: palette.neutral500,
+  /**
+   * Icon
+   */
+  iconPrimary: palette.primary600,
+  iconSecondary: palette.primary400,
+  iconInvert: palette.primary200,
+  /**
+   * Border
+   */
+  borderPrimary: palette.grey900,
+  borderBrand: palette.primary600,
+  borderSecondary: palette.neutral500,
+  /**
+   * App
+   */
+  ayahShadow: "#0000FF",
+  cardShadow: "#000000",
 }

@@ -1,54 +1,60 @@
-// TODO: write documentation about fonts and typography along with guides on how to add custom fonts in own
-// markdown file and add links from here
-
-import { Platform } from "react-native"
 import {
-  SpaceGrotesk_300Light as spaceGroteskLight,
-  SpaceGrotesk_400Regular as spaceGroteskRegular,
-  SpaceGrotesk_500Medium as spaceGroteskMedium,
-  SpaceGrotesk_600SemiBold as spaceGroteskSemiBold,
-  SpaceGrotesk_700Bold as spaceGroteskBold,
-} from "@expo-google-fonts/space-grotesk"
+  Amiri_400Regular as amiriRegular,
+  Amiri_700Bold as amiriBold,
+} from "@expo-google-fonts/amiri"
+
+import {
+  Inter_300Light as interLight,
+  Inter_400Regular as interRegular,
+  Inter_500Medium as interMedium,
+  Inter_600SemiBold as interSemiBold,
+  Inter_700Bold as interBold,
+} from "@expo-google-fonts/inter"
 
 export const customFontsToLoad = {
-  spaceGroteskLight,
-  spaceGroteskRegular,
-  spaceGroteskMedium,
-  spaceGroteskSemiBold,
-  spaceGroteskBold,
+  HacenTunisiaLight: require("../../assets/fonts/HacenTunisiaLt.ttf"),
+  HacenTunisiaRegular: require("../../assets/fonts/HacenTunisia.ttf"),
+  HacenTunisiaBold: require("../../assets/fonts/HacenTunisiaBd.ttf"),
+  interLight,
+  interRegular,
+  interMedium,
+  interSemiBold,
+  interBold,
+  uthmanicWarsh: require("../../assets/fonts/uthmanic_warsh_v21.ttf"),
+  amiriRegular,
+  amiriBold,
 }
 
 const fonts = {
-  spaceGrotesk: {
-    // Cross-platform Google font.
-    light: "spaceGroteskLight",
-    normal: "spaceGroteskRegular",
-    medium: "spaceGroteskMedium",
-    semiBold: "spaceGroteskSemiBold",
-    bold: "spaceGroteskBold",
+  hacenTunisia: {
+    light: "HacenTunisiaLight",
+    normal: "HacenTunisiaRegular",
+    medium: "HacenTunisiaRegular",
+    semiBold: "HacenTunisiaBold",
+    bold: "HacenTunisiaBold",
   },
-  helveticaNeue: {
-    // iOS only font.
-    thin: "HelveticaNeue-Thin",
-    light: "HelveticaNeue-Light",
-    normal: "Helvetica Neue",
-    medium: "HelveticaNeue-Medium",
+  inter: {
+    light: "interLight",
+    normal: "interRegular",
+    medium: "interMedium",
+    semiBold: "interSemiBold",
+    bold: "interBold",
   },
-  courier: {
-    // iOS only font.
-    normal: "Courier",
+  uthmanicWarsh: {
+    normal: "uthmanicWarsh",
   },
-  sansSerif: {
-    // Android only font.
-    thin: "sans-serif-thin",
-    light: "sans-serif-light",
-    normal: "sans-serif",
-    medium: "sans-serif-medium",
+  amiri: {
+    normal: "amiriRegular",
+    bold: "amiriBold",
   },
-  monospace: {
-    // Android only font.
-    normal: "monospace",
-  },
+}
+
+export const fontSizes = {
+  tiny: 12,
+  small: 14,
+  medium: 16,
+  large: 18,
+  huge: 20,
 }
 
 export const typography = {
@@ -59,13 +65,8 @@ export const typography = {
   /**
    * The primary font. Used in most places.
    */
-  primary: fonts.spaceGrotesk,
-  /**
-   * An alternate font used for perhaps titles and stuff.
-   */
-  secondary: Platform.select({ ios: fonts.helveticaNeue, android: fonts.sansSerif }),
-  /**
-   * Lets get fancy with a monospace font!
-   */
-  code: Platform.select({ ios: fonts.courier, android: fonts.monospace }),
+  primary: fonts.hacenTunisia,
+  primaryLatin: fonts.inter,
+  warch: fonts.uthmanicWarsh,
+  books: fonts.amiri,
 }
