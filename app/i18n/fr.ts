@@ -8,11 +8,12 @@ const fr: Translations = {
     logOut: "Déconnexion",
   },
   welcomeScreen: {
-    postscript:
-      "psst  — Ce n'est probablement pas à quoi ressemble votre application. (À moins que votre designer ne vous ait donné ces écrans, dans ce cas, mettez la en prod !)",
-    readyForLaunch: "Votre application, presque prête pour le lancement !",
-    exciting: "(ohh, c'est excitant !)",
-    letsGo: "Allons-y !",
+    description:
+      "Cet écran sera la première chose que les utilisateurs verront lorsqu'ils ouvriront l'application. Il est utilisé pour présenter l'application et guider l'utilisateur.",
+    appName: "Mushaf App",
+    shortDescription: "Mushaf App est un Coran électronique pour apprendre le Saint Coran",
+    continue: "Continuer",
+    downloadInBackground: "Parcourir pendant le téléchargement en arrière-plan",
   },
   errorScreen: {
     title: "Quelque chose s'est mal passé !",

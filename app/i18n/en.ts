@@ -6,11 +6,12 @@ const en = {
     logOut: "Log Out",
   },
   welcomeScreen: {
-    postscript:
-      "psst  — This probably isn't what your app looks like. (Unless your designer handed you these screens, and in that case, ship it!)",
-    readyForLaunch: "Your app, almost ready for launch!",
-    exciting: "(ohh, this is exciting!)",
-    letsGo: "Let's go!",
+    description:
+      "This screen will be the first thing users see when they open the app. It's used to introduce the app and guide the user.",
+    appName: "Mushaf App",
+    shortDescription: "Mushaf App is an electronic Quran for learning the Holy Quran",
+    continue: "Continue",
+    downloadInBackground: "Browse while downloading in the background",
   },
   errorScreen: {
     title: "Something went wrong!",
