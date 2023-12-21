@@ -7,3 +7,7 @@ export * from "./DemoShowroomScreen/DemoShowroomScreen"
 
 export * from "./ErrorScreen/ErrorBoundary"
 // export other screens here
+export * from "./HomeScreen"
+export * from "./MenuScreen"
+export * from "./OnBoardingScreen"
+export * from "./DetailsScreen"
