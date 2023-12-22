@@ -10,10 +10,12 @@ import { navigate } from "app/navigators"
 interface MenuScreenProps extends SideStackScreenProps<"Menu"> {}
 
 const drawerList = [
-  { name: "menus.index", icon: "index", navigateTo: "Home", inSideMenu: true },
-  { name: "menus.masahif", icon: "mushaf", navigateTo: "Details", inSideMenu: true },
-  { name: "menus.settings", icon: "cog", navigateTo: "OnBoarding", inSideMenu: true },
-  { name: "menus.prejcts", icon: "cog", navigateTo: "Languages", inSideMenu: false },
+  { name: "menus.home", icon: "home", navigateTo: "Home", inSideMenu: true },
+  { name: "menus.services", icon: "services", navigateTo: "Services", inSideMenu: true },
+  { name: "menus.about", icon: "about", navigateTo: "About", inSideMenu: true },
+  { name: "menus.skills", icon: "skills", navigateTo: "Skills", inSideMenu: false },
+  { name: "menus.portfolio", icon: "portfolio", navigateTo: "Portfolio", inSideMenu: false },
+  { name: "menus.contact", icon: "contact", navigateTo: "Contact", inSideMenu: false },
 ]
 
 export const MenuScreen: FC<MenuScreenProps> = function MenuScreen(_props) {

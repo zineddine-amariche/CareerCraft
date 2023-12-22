@@ -9,27 +9,29 @@ const palette = {
   grey900: "#202020",
 
   neutral50: "#FBF8F3",
-  neutral100: "#d9dcfa",
-  neutral150: "#8c97ef",
-  neutral200: "#6675e9",
-  neutral300: "#4052e4",
-  neutral400: "#3342b6",
-  neutral500: "#3342b6",
-  neutral600: "#263189",
-  neutral700: "#1a215b",
-  neutral800: "#0d102e",
-  neutral900: "#0c0d1a",
+  neutral100: "#d3d4d7",
+  neutral150: "#CCCCC3",
+  neutral200: "#a7a8b0",
+  neutral300: "#7b7d88",
+  neutral400: "#4f5161",
+  neutral500: "#232639",
+  neutral600: "#1c1e2e",
+  neutral700: "#151722",
+  neutral800: "#0e0f17",
+  neutral900: "#07080b",
   neutralOverlay: "#4c4d67",
 
-  primary50: "#f5e7db",
-  primary200: "#efdbca",
-  primary400: "#eacfb8",
-  primary600: "#e5c3a6",
-  primary800: "#5c4e42",
-  primary900: "#2e2721",
+  primary50: "#dc878d",
+  primary200: "#d15f67",
+  primary400: "#c53741",
+  primary600: "#762127",
+  primary800: "#4f161a",
+  primary900: "#270b0d",
 
   angry100: "#F2D6CD",
   angry500: "#C03403",
+
+  secondary50: "#E5C3A6",
 
   overlay20: "rgba(25, 16, 21, 0.2)",
   overlay50: "rgba(25, 16, 21, 0.5)",
@@ -57,11 +59,13 @@ export const colors = {
    */
   textPrimary: palette.grey900,
   textSecondary: palette.grey600,
-  textBrand: palette.primary600,
+  textBrand: palette.primary400,
   textBrandSecondary: palette.neutral500,
   textBrandSecondaryDark: palette.neutral600,
   textInvert: palette.grey50,
   textDim: palette.grey400,
+
+  secondaryTextPrimary: palette.secondary50,
   /**
    * The default color of the screen background.
    */
@@ -92,7 +96,7 @@ export const colors = {
    * Surface
    */
   surfaceDark: palette.neutralOverlay,
-  surfacePrimary: palette.neutral200,
+  surfacePrimary: palette.neutral800,
   surfaceSecondaryPlus: palette.neutral150,
   surfaceSecondary: palette.neutral100,
   surfaceInvert: palette.neutral700,
@@ -100,8 +104,8 @@ export const colors = {
   /**
    * Icon
    */
-  iconPrimary: palette.primary600,
-  iconSecondary: palette.primary400,
+  iconPrimary: palette.primary400,
+  iconSecondary: palette.primary600,
   iconInvert: palette.primary200,
   /**
    * Border
