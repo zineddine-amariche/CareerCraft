@@ -1,5 +1,6 @@
 import React, { ReactElement, useEffect } from "react"
 import {
+  Linking,
   StyleProp,
   TextStyle,
   TouchableOpacity,
@@ -100,11 +101,14 @@ const HomeHeader = observer((props: HomeHeaderProps) => {
             sideNavigate("Menu")
           }}
         />
+        <Text tx={"about.name"} size="md" weight="bold" preset={"title"}></Text>
         <View style={$actionGroup}>
           <HeaderAction
-            icon={"search"}
+            icon={"github"}
             iconColor={colors.iconPrimary}
-            onPress={() => sideNavigate("Search")}
+            onPress={() => {
+              Linking.openURL("https://github.com/zineddine-amariche")
+            }}
           />
         </View>
       </View>
