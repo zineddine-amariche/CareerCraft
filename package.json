@@ -28,11 +28,14 @@
     "bundle:web": "npx expo export --platform web",
     "serve:web": "npx server dist",
     "prebuild:clean": "npx expo prebuild --clean",
-    "prebuild": "npx expo prebuild"
+    "prebuild": "npx expo prebuild",
+    "generate:component": "npx ignite-cli generate component",
+    "generate:screen": "npx ignite-cli generate screen"
   },
   "dependencies": {
     "@expo-google-fonts/amiri": "^0.2.3",
     "@expo-google-fonts/inter": "^0.2.3",
+    "@expo-google-fonts/lato": "^0.2.3",
     "@expo-google-fonts/space-grotesk": "^0.2.2",
     "@faker-js/faker": "^8.3.1",
     "@react-native-async-storage/async-storage": "1.18.2",
@@ -51,6 +54,7 @@
     "expo-localization": "~14.3.0",
     "expo-splash-screen": "~0.20.4",
     "expo-status-bar": "~1.6.0",
+    "faker": "^6.6.6",
     "i18n-js": "3.9.2",
     "i18next": "^23.7.11",
     "mobx": "6.10.2",
