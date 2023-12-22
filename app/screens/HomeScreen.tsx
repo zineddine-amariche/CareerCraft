@@ -1,17 +1,14 @@
-import React, { FC, useState } from "react"
+import React, { FC, useEffect, useState } from "react"
 import { observer } from "mobx-react-lite"
-import { View, ViewStyle } from "react-native"
+import { Dimensions, View, ViewStyle } from "react-native"
 import { AppStackScreenProps } from "app/navigators"
-import { HackerText } from "app/components"
+import { HomePageView } from "app/components"
 import { StatusBar } from "expo-status-bar"
-import HomeHeader from "app/components/HomeHeader"
-import { Gesture, GestureDetector } from "react-native-gesture-handler"
-import { colors, spacing } from "app/theme"
-import { runOnJS } from "react-native-reanimated"
+import { colors } from "app/theme"
+import { useSharedValue, withTiming } from "react-native-reanimated"
 import { useStores } from "app/models"
-import { useSafeAreaInsetsStyle } from "app/utils/useSafeAreaInsetsStyle"
-
 interface HomeScreenProps extends AppStackScreenProps<"HomeScreen"> {}
+const { height } = Dimensions.get("screen")
 
 export const HomeScreen: FC<HomeScreenProps> = observer(function HomeScreen() {
   // Pull in one of our MST stores
@@ -24,71 +21,36 @@ export const HomeScreen: FC<HomeScreenProps> = observer(function HomeScreen() {
     uiStore: { setShadowModalShow },
   } = useStores()
   const [show, setShow] = useState(true)
-  const gesture = Gesture.Tap().onEnd(() => {
-    runOnJS(setShow)(!show)
-  })
 
-  const [index, setIndex] = React.useState(0)
-  const timer = React.useRef<NodeJS.Timeout>()
+  const headerHeight = useSharedValue(0) // Initialiser à 0
+  const showHeader = () => {
+    headerHeight.value = withTiming(height) // La hauteur finale du header
+  }
 
-  React.useEffect(() => {
-    const changeSentence = () => {
-      timer.current = setTimeout(() => {
-        setIndex((index) => {
-          return (index + 1) % sentence.length
-        })
-        changeSentence()
-      }, 3000)
+  const hideHeader = () => {
+    headerHeight.value = withTiming(height - 100) // La hauteur finale du header
+  }
+
+  useEffect(() => {
+    if (show) {
+      hideHeader() // Afficher le header au montage du composant
+    } else {
+      showHeader() // Afficher le header au montage du composant
     }
-
-    changeSentence()
-
-    return () => {
-      if (timer.current) {
-        clearTimeout(timer.current)
-      }
-    }
-  }, [])
-  const $bottomContainerInsets = useSafeAreaInsetsStyle(["bottom"])
+  }, [show])
 
   return (
-    <View style={[$root,$bottomContainerInsets]}>
+    <View style={[$root]}>
       <StatusBar translucent={true} />
       <View
         style={$container}
         onTouchStart={(e) => setShadowModalShow(false)}
         pointerEvents={"box-none"}
       >
-        <HomeHeader show={show} />
-        <GestureDetector gesture={gesture}>
-          
-          <View style={{flex:1,justifyContent:"flex-end",padding:spacing.md}}>
-          <HackerText
-            text={sentence[index] as string}
-            style={{
-              fontSize: 20,
-              fontFamily: "Menlo",
-              fontWeight: "bold",
-            }}
-            uppercase
-          />
-
-          <HackerText
-            text={subtitles[index] as string}
-            style={{
-              marginTop: 10,
-              fontSize: 14,
-              fontFamily: "Menlo",
-              opacity: 0.7,
-            }}
-            // uppercase
-          />
-          </View>
-
-        </GestureDetector>
-        {/* <MediaControlBar show={show} /> */}
+        <View style={{ flex: 1, justifyContent: "flex-end" }}>
+          <HomePageView />
+        </View>
       </View>
-      {/* <DetailsSelectedAyahModal /> */}
     </View>
   )
 })
@@ -104,17 +66,3 @@ const $container: ViewStyle = {
   backgroundColor: colors.surfaceSecondary,
 }
 
-const sentence = [
-  // 'Be yourself; everyone else is already taken.',
-  `So many books, so little time.`,
-  // `A room without books is like a body without a soul.`,
-  `Made with love by @zineddine`,
-  `Using Expo and Reanimated`,
-]
-const subtitles = [
-  // 'Be yourself; everyone else is already taken.',
-  `- _ - _ - _ -`,
-  // `A room without books is like a body without a soul.`,
-  `Follow me on Twitter for more`,
-  `. . . . . . . . . . . . . . .`,
-]

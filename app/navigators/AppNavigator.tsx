@@ -47,7 +47,12 @@ export type AppStackParamList = {
   Details: undefined
   Languages: undefined
   OnboardingLanguages: undefined
-  // IGNITE_GENERATOR_ANCHOR_APP_STACK_PARAM_LIST
+  Services: undefined
+	Portfolio: undefined
+	About: undefined
+	Skills: undefined
+	Contact: undefined
+	// IGNITE_GENERATOR_ANCHOR_APP_STACK_PARAM_LIST
 }
 
 /**
