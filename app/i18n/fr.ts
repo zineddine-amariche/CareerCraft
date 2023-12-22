@@ -31,7 +31,6 @@ const fr: Translations = {
     },
   },
   menus: {
-    index: "Index",
     masahif: "Masahef",
     reciters: "Récitateurs",
     tafaseer: "Tafaseer",
@@ -43,6 +42,11 @@ const fr: Translations = {
     home: "Accueil",
     about: "À propos",
     languages: "Langue de l'interface",
+    portfolio:"Portefeuille",
+    contact: "Nous contacter",
+    share: "Partager",
+    services: "Services",
+    skills: "Compétences",
   },
   index: {
     gotoAyah: "aller à l'ayah sélectionnée",
@@ -176,6 +180,8 @@ const fr: Translations = {
     word: "Le ministère des Affaires religieuses et des Wakfs est honoré de servir le Coran et ses sciences à travers cette application, demandant à Dieu Tout-Puissant de le rendre utile aux musulmans.",
     wizaraStaff: "Personnel du ministère:",
     developementTeam: "Équipe de développement:",
+    name:"Zineddine Amariche"
+
   },
 }
 

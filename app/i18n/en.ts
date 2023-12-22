@@ -29,7 +29,6 @@ const en = {
     },
   },
   menus: {
-    index: "Index",
     masahif: "Masahef",
     reciters: "Reciters",
     tafaseer: "Tafaseer",
@@ -41,6 +40,11 @@ const en = {
     home: "Home",
     about: "About",
     languages: "Interface language",
+    portfolio: "Portfolio",
+    contact: "Contact",
+    share: "Share",
+    services: "Services",
+    skills: "Skills",
   },
   index: {
     gotoAyah: "go to selected ayah",
@@ -174,6 +178,8 @@ const en = {
     word: "The Ministry of Religious Affairs and Endowments is honored to serve the Holy Quran and its sciences through this application, asking Allah Almighty to benefit Muslims with it.",
     wizaraStaff: "Ministry staff:",
     developementTeam: "Development team:",
+    name:"Zineddine Amariche"
+
   },
 }
 

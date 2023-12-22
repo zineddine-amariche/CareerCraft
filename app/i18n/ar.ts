@@ -31,7 +31,6 @@ const ar: Translations = {
     },
   },
   menus: {
-    index: "فهرس القرآن",
     masahif: "مصاحف",
     reciters: "القراء",
     tafaseer: "التفاسير",
@@ -43,6 +42,12 @@ const ar: Translations = {
     about: "عن التطبيق",
     home: "الرئيسية",
     languages: "لغة الواجهة",
+    portfolio: "محفظة الأعمال",
+    contact: "اتصل بنا",
+    share: "مشاركة التطبيق",
+    services: "خدماتنا",
+    skills: "المهارات",
+
     /*
     contact: "اتصل بنا",
     share: "مشاركة التطبيق",
@@ -191,6 +196,7 @@ const ar: Translations = {
     word: "تتشرف وزارة الشؤون الدينية والأوقاف بخدمة القرآن الكريم وعلومه من خلال اعتماد هذا التطبيق سائلين الله عز وجل أن ينفع المسلمين به.",
     wizaraStaff: "طاقم الوزارة:",
     developementTeam: "فريق التطوير:",
+    name:"زين الدين عماريش"
   },
 }
 
