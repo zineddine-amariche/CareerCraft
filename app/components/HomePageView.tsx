@@ -1,5 +1,5 @@
 import * as React from "react"
-import { StyleProp, TextStyle, ViewStyle } from "react-native"
+import { Pressable, StyleProp, TextStyle, ViewStyle } from "react-native"
 import { observer } from "mobx-react-lite"
 import { colors, spacing, typography } from "app/theme"
 import {
@@ -18,22 +18,17 @@ import Animated, {
   Extrapolate,
   interpolate,
   withTiming,
-  withRepeat,
-  withSpring,
   useSharedValue,
   useAnimatedStyle,
   useAnimatedScrollHandler,
 } from "react-native-reanimated"
-import { MotiView } from "moti"
 import {
   useFonts,
-  Lato_300Light,
   Lato_400Regular,
   Lato_700Bold,
-  Lato_900Black,
 } from "@expo-google-fonts/lato"
-import getSomeCoolEmojis from "get-some-cool-emojis"
 import { Icon } from "./Icon"
+import { sideNavigate } from "app/navigators"
 
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList)
 const AnimatedSectionList = Animated.createAnimatedComponent(SectionList)
@@ -116,10 +111,6 @@ const educationData = [
     productName: "Bachelor's Degree",
     emoji: "graduation-cap",
   },
-
-
-
-
 ]
 
 const certificatesData = [
@@ -282,11 +273,14 @@ export const HomePageView = observer(function HomePageView(props: HomePageViewPr
           style={[{ paddingVertical: _spacing, marginBottom: _spacing }, balanceStylez]}
         >
           <View style={{ flexDirection: "row", alignItems: "center", gap: spacing.xs }}>
-            <View
+            <Pressable
+              onPress={() => {
+                sideNavigate()
+              }}
               style={[
                 {
-                  width: 52,
-                  height: 52,
+                  width: 48,
+                  height: 48,
                   borderRadius: 52,
                   alignItems: "center",
                   justifyContent: "center",
@@ -296,7 +290,7 @@ export const HomePageView = observer(function HomePageView(props: HomePageViewPr
               ]}
             >
               <Icon icon="profileImage" size={spacing.xl} />
-            </View>
+            </Pressable>
             <View style={{}}>
               <Text
                 style={[
@@ -323,23 +317,17 @@ export const HomePageView = observer(function HomePageView(props: HomePageViewPr
             return (
               <View
                 style={{
-                  // paddingVertical: _spacing * 2,
                   backgroundColor: colors.surfacePrimary,
                   marginRight: _spacing,
-                  // width: index === 0 ? _itemSize + 20 : _otherSize,
-                  // height: _itemSize -30,
                   borderRadius: 8,
                   flexDirection: "row",
                   overflow: "hidden",
                   alignItems: "center",
-                  // paddingHorizontal: spacing.sm,
                   justifyContent: "space-between",
-                  // gap: spacing.sm,
                 }}
               >
                 <View style={{ padding: spacing.md, gap: spacing.xs - 2 }}>
                   <Text style={[styles.bold, { fontSize: 12, color: _colors.text }]}>
-                    {/* {item.amount} */}
                     currently working on
                   </Text>
                   <Text style={[styles.bold, { fontSize: 16, color: colors.secondaryTextPrimary }]}>
@@ -396,59 +384,74 @@ export const HomePageView = observer(function HomePageView(props: HomePageViewPr
           return (
             <View
               style={{
-                padding: _spacing,
                 marginBottom: _spacing,
-                flexDirection: "row",
-                justifyContent: "space-between",
-                alignItems: "center",
+                margin: _spacing,
+                backgroundColor: colors.surfacePrimary,
+                paddingVertical: spacing.sm,
+                gap: spacing.sm,
               }}
             >
-              <View
-                style={{
-                  width: 52,
-                  height: 52,
-                  borderRadius: 8,
-                  backgroundColor: `${_colors.text}16`,
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <Icon icon="react" color={colors.secondaryTextPrimary} size={spacing.xl} />
-              </View>
-              <View style={{ paddingHorizontal: _spacing }}>
+              <View style={{ paddingHorizontal: spacing.sm }}>
                 <Text
                   style={[
                     styles.bold,
                     {
-                      color: _colors.text,
-                      fontSize: 16,
-                      marginBottom: _spacing / 2,
+                      color: colors.textInvert,
+                      fontSize: 10,
+                      opacity: 0.6,
                     },
                   ]}
                 >
-                  {item.Company}
-                </Text>
-                <Text style={[styles.regular, { color: _colors.text, opacity: 0.6 }]}>
-                  {item.job}
+                  {item.date} - Today ..
                 </Text>
               </View>
-              <View
-                style={{
-                  flexGrow: 1,
-                  alignItems: "flex-end",
-                  justifyContent: "center",
-                }}
-              >
-                <Text
-                  style={[
-                    styles.bold,
-                    {
-                      color: item.type === "inbound" ? "turquoise" : _colors.text,
-                      fontSize: 16,
-                    },
-                  ]}
+
+              <View style={{ flexDirection: "row", paddingHorizontal: _spacing + 2 }}>
+                <View
+                  style={{
+                    width: 36,
+                    height: 36,
+                    borderRadius: 8,
+                    backgroundColor: `${_colors.text}16`,
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
                 >
-                  {item.date}
+                  <Icon icon="react" color={colors.secondaryTextPrimary} size={spacing.xl} />
+                </View>
+                <View style={{ paddingHorizontal: spacing.xs }}>
+                  <Text
+                    style={[
+                      styles.bold,
+                      {
+                        color: colors.secondaryTextPrimary,
+                        fontSize: 16,
+                      },
+                    ]}
+                  >
+                    {item.Company}
+                  </Text>
+                  <Text style={[styles.regular, { color: colors.textInvert, opacity: 0.6 }]}>
+                    {item.job}
+                  </Text>
+                </View>
+                <View
+                  style={{
+                    flexGrow: 1,
+                    alignItems: "flex-end",
+                    justifyContent: "flex-end",
+                  }}
+                ></View>
+              </View>
+
+              <View style={{ flex: 1, paddingHorizontal: _spacing + 2, gap: spacing.sm }}>
+                <Text style={{ fontSize: 12, color: "#FFF3" }} numberOfLines={2}>
+                  In order to embark on a new experience and enhance my skills, I started here in
+                  developing phone applications through React Native. I ma currently working on Mac,
+                  aiming to develop phone applications and upload them to the App Store. So far, I
+                  have learned new things and gained years of experience after my interaction with
+                  developers who have over 15 years of expertise ni the field. Iwas able to quickly
+                  adapt ot hte team.
                 </Text>
               </View>
             </View>
@@ -483,7 +486,6 @@ const styles = StyleSheet.create({
     paddingTop: Constants.statusBarHeight,
     backgroundColor: _colors.bg,
     padding: _spacing,
-    // paddingVertical: _spacing * 2,
   },
   header: {
     top: Constants.statusBarHeight,
