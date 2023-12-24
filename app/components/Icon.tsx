@@ -117,6 +117,7 @@ export const iconRegistry = {
   nextJs: require("../../assets/icons/nextJs.png"),
   collaborate: require("../../assets/icons/collaborate.png"),
   profileImage: require("../../assets/icons/profileImage.png"),
+  fluent_settings: require("../../assets/icons/fluent_settings.png"),
 }
 
 const $imageStyleBase: ImageStyle = {
