@@ -1,9 +1,8 @@
 import * as React from "react"
-import { Pressable, StyleProp, TextStyle, ViewStyle } from "react-native"
+import { Pressable, StyleProp, ViewStyle } from "react-native"
 import { observer } from "mobx-react-lite"
-import { colors, spacing, typography } from "app/theme"
+import { colors, spacing } from "app/theme"
 import {
-  StatusBar,
   SafeAreaView,
   SectionList,
   Text,
@@ -22,13 +21,10 @@ import Animated, {
   useAnimatedStyle,
   useAnimatedScrollHandler,
 } from "react-native-reanimated"
-import {
-  useFonts,
-  Lato_400Regular,
-  Lato_700Bold,
-} from "@expo-google-fonts/lato"
+import { useFonts, Lato_400Regular, Lato_700Bold } from "@expo-google-fonts/lato"
 import { Icon } from "./Icon"
 import { sideNavigate } from "app/navigators"
+import { TouchableOpacity } from "react-native-gesture-handler"
 
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList)
 const AnimatedSectionList = Animated.createAnimatedComponent(SectionList)
@@ -56,6 +52,16 @@ const experienceData = [
     type: "inbound",
     department: "Mobile",
     productName: "React Native",
+    emoji: "react",
+  },
+  {
+    key: "Experience",
+    date: "2019-01",
+    Company: "Another Company | Location",
+    job: "Another Job",
+    type: "inbound",
+    department: "Another Department",
+    productName: "Another Product",
     emoji: "react",
   },
   {
@@ -134,6 +140,16 @@ const certificatesData = [
     productName: "Certificate Product",
     emoji: "certificate",
   },
+  {
+    key: "Certificates",
+    date: "2021-01",
+    Company: "Certificate Provider",
+    job: "Certificate Name",
+    type: "inbound",
+    department: "Certificate Department",
+    productName: "Certificate Product",
+    emoji: "certificate",
+  },
 ]
 const _data = _months.map((month) => ({
   title: month,
@@ -145,8 +161,6 @@ const _data = _months.map((month) => ({
       ? educationData
       : certificatesData,
 }))
-
-console.log("_data", _data)
 
 const _colors = {
   bg: "#030303",
@@ -169,6 +183,8 @@ export interface HomePageViewProps {
 export const HomePageView = observer(function HomePageView(props: HomePageViewProps) {
   const { style } = props
   const $styles = [$container, style]
+
+  console.log("Constants.statusBarHeight", Constants.statusBarHeight)
 
   let [fontsLoaded] = useFonts({
     LatoRegular: Lato_400Regular,
@@ -244,9 +260,6 @@ export const HomePageView = observer(function HomePageView(props: HomePageViewPr
       ),
     }
   })
-  // React.useEffect(() => {
-  //   headerAnim.value = withRepeat(withTiming(_itemSize, {duration: 2000}), Infinity, true)
-  // })
 
   if (!fontsLoaded) {
     return (
@@ -315,7 +328,7 @@ export const HomePageView = observer(function HomePageView(props: HomePageViewPr
           showsHorizontalScrollIndicator={false}
           renderItem={({ item, index }) => {
             return (
-              <View
+              <TouchableOpacity
                 style={{
                   backgroundColor: colors.surfacePrimary,
                   marginRight: _spacing,
@@ -324,6 +337,9 @@ export const HomePageView = observer(function HomePageView(props: HomePageViewPr
                   overflow: "hidden",
                   alignItems: "center",
                   justifyContent: "space-between",
+                }}
+                onPress={() => {
+                  // navigate("Demo",{screen:"DemoShowroom"})
                 }}
               >
                 <View style={{ padding: spacing.md, gap: spacing.xs - 2 }}>
@@ -353,7 +369,7 @@ export const HomePageView = observer(function HomePageView(props: HomePageViewPr
                 <View style={{ padding: spacing.md }}>
                   <Icon icon="react" size={34} color={colors.secondaryTextPrimary} />
                 </View>
-              </View>
+              </TouchableOpacity>
             )
           }}
         />
@@ -406,7 +422,12 @@ export const HomePageView = observer(function HomePageView(props: HomePageViewPr
                 </Text>
               </View>
 
-              <View style={{ flexDirection: "row", paddingHorizontal: _spacing + 2 }}>
+              <View
+                style={{
+                  flexDirection: "row",
+                  paddingHorizontal: _spacing + 2,
+                }}
+              >
                 <View
                   style={{
                     width: 36,
@@ -458,19 +479,12 @@ export const HomePageView = observer(function HomePageView(props: HomePageViewPr
           )
         }}
       />
-      <StatusBar barStyle="light-content" />
     </SafeAreaView>
   )
 })
 
 const $container: ViewStyle = {
   justifyContent: "center",
-}
-
-const $text: TextStyle = {
-  fontFamily: typography.primary.normal,
-  fontSize: 14,
-  color: colors.palette.primary500,
 }
 
 const styles = StyleSheet.create({
@@ -489,14 +503,6 @@ const styles = StyleSheet.create({
   },
   header: {
     top: Constants.statusBarHeight,
-    left: _spacing,
+    left: spacing.sm,
   },
 })
-
-const $shadow: ViewStyle = {
-  shadowColor: colors.white,
-  shadowOffset: { width: 0, height: -2 },
-  shadowOpacity: 0.25,
-  shadowRadius: 4,
-  elevation: 4,
-}

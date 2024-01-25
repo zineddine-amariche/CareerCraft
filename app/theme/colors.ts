@@ -104,7 +104,7 @@ export const colors = {
   /**
    * Icon
    */
-  iconPrimary: palette.primary400,
+  iconPrimary: palette.secondary50,
   iconSecondary: palette.primary600,
   iconInvert: palette.primary200,
   /**

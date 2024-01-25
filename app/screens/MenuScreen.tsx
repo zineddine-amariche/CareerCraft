@@ -11,15 +11,16 @@ interface MenuScreenProps extends SideStackScreenProps<"Menu"> {}
 
 const drawerList = [
   { name: "menus.home", icon: "home", navigateTo: "Home", inSideMenu: true },
-  { name: "menus.services", icon: "services", navigateTo: "Services", inSideMenu: true },
-  { name: "menus.about", icon: "about", navigateTo: "About", inSideMenu: true },
+  { name: "menus.portfolio", icon: "portfolio", navigateTo: "Portfolio", inSideMenu: true },
   { name: "menus.skills", icon: "skills", navigateTo: "Skills", inSideMenu: false },
-  { name: "menus.portfolio", icon: "portfolio", navigateTo: "Portfolio", inSideMenu: false },
+  { name: "menus.services", icon: "services", navigateTo: "Services", inSideMenu: false },
   { name: "menus.contact", icon: "contact", navigateTo: "Contact", inSideMenu: false },
+  { name: "menus.languages", icon: "fluent_settings", navigateTo: "Languages", inSideMenu: false },
+  { name: "menus.about", icon: "about", navigateTo: "About", inSideMenu: false },
 ]
 
 export const MenuScreen: FC<MenuScreenProps> = function MenuScreen(_props) {
-  useSideHeader({ titleTx: "menus.home" })
+  useSideHeader({ titleTx: "menus.home" , })
   const { navigation } = _props
 
   return (
@@ -49,7 +50,7 @@ export const MenuScreen: FC<MenuScreenProps> = function MenuScreen(_props) {
 const $container: ViewStyle = {
   paddingTop: spacing.md,
   flex: 1,
-  backgroundColor: colors.surfaceSecondary,
+  backgroundColor: colors.textBrandSecondaryDark,
   borderBottomRightRadius: metrics.roundedLarge,
 }
 const $itemContainer: ViewStyle = {
@@ -61,4 +62,5 @@ const $itemContainer: ViewStyle = {
 const $itemText: TextStyle = {
   marginLeft: 20,
   fontSize: 18,
+  color: colors.white,
 }

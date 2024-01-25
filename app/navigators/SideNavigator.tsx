@@ -11,6 +11,10 @@ export type SideStackParamList = {
   Menu: undefined
   details: undefined
   Languages: undefined
+  About: undefined
+  Contact: undefined
+  Skills: undefined
+  Services: undefined
 }
 
 export type SideStackScreenProps<T extends keyof SideStackParamList> = NativeStackScreenProps<
@@ -41,6 +45,10 @@ export const SideNavigator = observer(function SideNavigator(props: SideNavigati
       >
         <Stack.Screen name="Menu" component={Screens.MenuScreen} />
         <Stack.Screen name="Languages" component={Screens.LanguagesScreen} />
+        <Stack.Screen name="About" component={Screens.AboutScreen} />
+        <Stack.Screen name="Contact" component={Screens.ContactScreen} />
+        <Stack.Screen name="Skills" component={Screens.SkillsScreen} />
+        <Stack.Screen name="Services" component={Screens.ServicesScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   )

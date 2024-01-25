@@ -30,7 +30,8 @@
     "prebuild:clean": "npx expo prebuild --clean",
     "prebuild": "npx expo prebuild",
     "generate:component": "npx ignite-cli generate component",
-    "generate:screen": "npx ignite-cli generate screen"
+    "generate:screen": "npx ignite-cli generate screen",
+    "android:release": "cd android && ./gradlew clean app:assembleRelease"
   },
   "dependencies": {
     "@expo-google-fonts/amiri": "^0.2.3",

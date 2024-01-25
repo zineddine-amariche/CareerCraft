@@ -80,9 +80,7 @@ const AppStack = observer(function AppStack() {
       initialRouteName={!locale ? "OnboradingLanguages" : onboardingCompleted ? "HomeScreen" : "Welcome"}
     >
       <Stack.Screen name="OnboradingLanguages" component={Screens.OnboardingLanguagesScreen} />
-
-      {/* <Stack.Screen name="OnBoarding" component={Screens.OnBoardingScreen} /> */}
-      {/* <Stack.Screen name="Details" component={Screens.DetailsScreen} /> */}
+      <Stack.Screen name="Portfolio" component={Screens.OnBoardingScreen} />
       <Stack.Screen name="Welcome" component={Screens.WelcomeScreen} />
       <Stack.Screen name="Demo" component={DemoNavigator} />
       <Stack.Screen name="HomeScreen" component={HomeNavigator} />

@@ -3,6 +3,9 @@ import { observer } from "mobx-react-lite"
 import { ViewStyle } from "react-native"
 import { AppStackScreenProps } from "app/navigators"
 import { Screen, Text } from "app/components"
+import { useSideHeader } from "app/utils/useSideHeader"
+import { useSafeAreaInsetsStyle } from "app/utils/useSafeAreaInsetsStyle"
+import { colors } from "app/theme"
 // import { useNavigation } from "@react-navigation/native"
 // import { useStores } from "app/models"
 
@@ -14,6 +17,9 @@ export const ContactScreen: FC<ContactScreenProps> = observer(function ContactSc
 
   // Pull in navigation via hook
   // const navigation = useNavigation()
+  useSideHeader({ titleTx: "menus.contact" })
+
+  const $containerInsets = useSafeAreaInsetsStyle(["bottom"])
   return (
     <Screen style={$root} preset="scroll">
       <Text text="contact" />
@@ -23,4 +29,6 @@ export const ContactScreen: FC<ContactScreenProps> = observer(function ContactSc
 
 const $root: ViewStyle = {
   flex: 1,
+  backgroundColor: colors.textBrandSecondaryDark,
+  
 }

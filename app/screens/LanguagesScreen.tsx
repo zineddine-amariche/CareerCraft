@@ -47,7 +47,7 @@ export const LanguagesScreen: FC<LanguagesScreenProps> = observer(function Langu
           size="sm"
           weight="light"
           tx={`languages.selectedLanguage`}
-          style={{ textAlign: "left", color: colors.textPrimary, paddingBottom: spacing.xs }}
+          style={{ textAlign: "left", color: colors.white, paddingBottom: spacing.xs }}
         ></Text>
         {selected && (
           <RenderCard
@@ -61,7 +61,7 @@ export const LanguagesScreen: FC<LanguagesScreenProps> = observer(function Langu
           size="sm"
           weight="light"
           tx={`languages.otherLanguage`}
-          style={{ textAlign: "left", color: colors.textPrimary, paddingBottom: spacing.xs }}
+          style={{ textAlign: "left", color: colors.white, paddingBottom: spacing.xs }}
         ></Text>
         <View style={{ flex: 1 }}>
           {notSelected.map((item) => (
@@ -108,7 +108,7 @@ const RenderCard: FC<RenderCardProps> = observer(({ language, isActive, setLocal
 
 const $root: ViewStyle = {
   flex: 1,
-  backgroundColor: colors.surfaceSecondary,
+  backgroundColor: colors.textBrandSecondaryDark,
 }
 
 const $container: ViewStyle = {
@@ -123,13 +123,13 @@ const $card: ViewStyle = {
   paddingVertical: spacing.xs,
   borderRadius: metrics.roundedMedium,
   marginBottom: spacing.md,
-  backgroundColor: colors.white,
+  backgroundColor: colors.surfacePrimary,
   flexDirection: "row",
   gap: spacing.xxs,
 }
 
 const $cardActive: ViewStyle = {
-  borderColor: colors.surfaceBrand,
+  borderColor: colors.secondaryTextPrimary,
 }
 
 const $shadow: ViewStyle = {
@@ -141,6 +141,6 @@ const $shadow: ViewStyle = {
 }
 const $textStyle: TextStyle = {
   textAlign: "left",
-  color: colors.textPrimary,
+  color: colors.white,
   lineHeight: 24,
 }

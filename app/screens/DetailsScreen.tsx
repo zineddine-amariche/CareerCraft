@@ -2,17 +2,8 @@ import React, { FC } from "react"
 import { observer } from "mobx-react-lite"
 import { AppStackScreenProps, navigate } from "app/navigators"
 
-import {
-  Text,
-  ScrollView,
-  Image,
-  View,
-  StyleSheet,
-  Dimensions,
-  TouchableOpacity,
-} from "react-native"
+import { Text, Image, View, StyleSheet, Dimensions, TouchableOpacity } from "react-native"
 
-import { faker } from "@faker-js/faker"
 import Animated, {
   Extrapolate,
   interpolate,
@@ -22,12 +13,12 @@ import Animated, {
   useSharedValue,
 } from "react-native-reanimated"
 import { Feather } from "@expo/vector-icons"
-import { useNavigation } from "@react-navigation/native"
+import { faker } from "@faker-js/faker"
+import { colors } from "app/theme"
 
-faker.seed(10)
 const { width, height } = Dimensions.get("screen")
 
-const colors = {
+const color = {
   header: "#E3D2CD",
   headerText: "#2A2659",
   tab: "#351F9C",
@@ -43,7 +34,7 @@ const _tabsHeightShrink = _tabsHeight / 2
 const inputRange = [0, _headerHeightShrink + _tabsHeightShrink]
 
 const Header = ({ scrollY }) => {
-  const navigation = useNavigation()
+  faker.seed(10)
   const stylez = useAnimatedStyle(() => {
     return {
       height: interpolate(
@@ -72,7 +63,7 @@ const Header = ({ scrollY }) => {
 
   return (
     <Animated.View
-      style={[{ backgroundColor: colors.header, justifyContent: "center", padding: 20 }, stylez]}
+      style={[{ backgroundColor: color.header, justifyContent: "center", padding: 20 }, stylez]}
     >
       <TouchableOpacity
         style={{
@@ -85,15 +76,15 @@ const Header = ({ scrollY }) => {
           zIndex: 2,
         }}
         onPress={() => {
-          navigate('Home')
+          navigate("OnBoarding")
         }}
       >
-        <Feather name="chevron-left" size={24} color={colors.headerText} />
+        <Feather name="chevron-left" size={24} color={color.headerText} />
       </TouchableOpacity>
       <Animated.View style={headerTextStyle}>
         <Text
           style={{
-            color: colors.headerText,
+            color: color.headerText,
             fontSize: 62,
             letterSpacing: -3,
             textTransform: "uppercase",
@@ -154,7 +145,7 @@ const Tabs = ({ scrollY }) => {
   })
   const navTextStyle = useAnimatedStyle(() => {
     return {
-      color: interpolateColor(scrollY.value, inputRange, [colors.tabText, colors.headerText]),
+      color: interpolateColor(scrollY.value, inputRange, [color.tabText, color.headerText]),
       transform: [
         {
           translateY: interpolate(
@@ -177,12 +168,15 @@ const Tabs = ({ scrollY }) => {
   })
   return (
     <Animated.View
-      style={[{ backgroundColor: colors.tab, justifyContent: "center", paddingLeft: 50 }, stylez]}
+      style={[
+        { backgroundColor: colors.surfacePrimary, justifyContent: "center", paddingLeft: 50 },
+        stylez,
+      ]}
     >
       <Animated.Text
         style={[
           {
-            color: colors.headerText,
+            color: color.headerText,
             fontSize: 20,
             fontWeight: "700",
             position: "absolute",
@@ -201,10 +195,10 @@ const Tabs = ({ scrollY }) => {
       >
         {tabs.map((tab, index) => (
           <View key={tab} style={{ marginRight: 40 }}>
-            <Text style={{ color: colors.tabText, fontWeight: "700", fontSize: 16 }}>{tab}</Text>
+            <Text style={{ color: color.tabText, fontWeight: "700", fontSize: 16 }}>{tab}</Text>
             {index === 0 && (
               <View
-                style={{ marginTop: 5, height: 2, backgroundColor: colors.tabText, width: "50%" }}
+                style={{ marginTop: 5, height: 2, backgroundColor: color.tabText, width: "50%" }}
               />
             )}
           </View>
@@ -229,7 +223,7 @@ export const DetailsScreen: FC<DetailsScreenProps> = observer(function DetailsSc
   })
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ flex: 1, backgroundColor: "#FFF3" }}>
       <Animated.ScrollView
         style={[StyleSheet.absoluteFillObject]}
         contentContainerStyle={{ padding: 20, paddingTop: _headerHeight + _tabsHeight + 20 }}

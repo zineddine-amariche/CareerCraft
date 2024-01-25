@@ -7,6 +7,7 @@ import {
   Pressable,
   StyleSheet,
   Text,
+  TouchableOpacity,
   View,
   ViewStyle,
 } from "react-native"
@@ -18,9 +19,11 @@ import Animated, {
   useAnimatedStyle,
   useSharedValue,
 } from "react-native-reanimated"
-import { faker } from "@faker-js/faker"
+import { faker, simpleFaker } from "@faker-js/faker"
 import { MaterialIcons } from "@expo/vector-icons"
-import { StatusBar } from "expo-status-bar"
+import { Feather } from "@expo/vector-icons"
+import { colors } from "app/theme"
+
 faker.seed(10)
 const { width, height } = Dimensions.get("window")
 
@@ -29,9 +32,11 @@ const AnimatedFlatList = Animated.createAnimatedComponent(FlatList)
 const _indicatorSize = 4
 const _spacing = 14
 const _buttonSize = 64
+const _headerHeight = height * 0.4
+const _headerHeightShrink = _headerHeight / 2
 
 const _data = [...Array(6).keys()].map((i) => ({
-  key: faker.datatype.uuid(),
+  key: simpleFaker.string.uuid(),
   title: faker.company.catchPhrase(),
   description: faker.company.bs(),
   duration: faker.number.int(1, 7) * 5,
@@ -164,6 +169,22 @@ export const OnBoardingScreen: FC<OnBoardingScreenProps> = observer(function OnB
   })
   return (
     <View style={styles.container}>
+      <TouchableOpacity
+        style={{
+          height: _headerHeightShrink / 4,
+          justifyContent: "center",
+          position: "absolute",
+          top: _headerHeightShrink / 2 - _headerHeightShrink / 8,
+          width: 80,
+          alignItems: "center",
+          zIndex: 2,
+        }}
+        onPress={() => {
+          navigate("Home")
+        }}
+      >
+        <Feather name="x" size={24} color={colors.white} />
+      </TouchableOpacity>
       <AnimatedFlatList
         data={_data}
         renderItem={(props) => <Item {...props} />}
@@ -198,7 +219,7 @@ export const OnBoardingScreen: FC<OnBoardingScreenProps> = observer(function OnB
           <MaterialIcons name="arrow-right-alt" size={_buttonSize / 2} color="white" />
         </View>
       </Pressable>
-      <StatusBar hidden />
+     
     </View>
   )
 })

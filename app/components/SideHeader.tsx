@@ -56,6 +56,7 @@ const $container: ViewStyle = {
 
 const $title: TextStyle = {
   textAlign: "left",
+  color: colors.secondaryTextPrimary,
 }
 
 const $actionIconContainer: ViewStyle = {
