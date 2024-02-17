@@ -15,6 +15,7 @@ import Animated, {
 import { Feather } from "@expo/vector-icons"
 import { faker } from "@faker-js/faker"
 import { colors } from "app/theme"
+import { isRTL } from "app/i18n"
 
 const { width, height } = Dimensions.get("screen")
 
@@ -79,7 +80,14 @@ const Header = ({ scrollY }) => {
           navigate("OnBoarding")
         }}
       >
-        <Feather name="chevron-left" size={24} color={color.headerText} />
+        <Feather
+          name="chevron-left"
+          size={24}
+          style={{
+            transform: [{ rotate: isRTL ? "180deg" : "0deg" }],
+          }}
+          color={color.headerText}
+        />
       </TouchableOpacity>
       <Animated.View style={headerTextStyle}>
         <Text
@@ -95,12 +103,16 @@ const Header = ({ scrollY }) => {
           VR -{"\n"}City VR
         </Text>
         <Image
-          source={{ uri: "https://i.ibb.co/sFD6bx1/klipartz-com.png" }}
+          source={
+            isRTL
+              ? require("assets/app-image/klipartz-right.png")
+              : require("assets/app-image/klipartz-left.png")
+          }
           style={{
             position: "absolute",
             bottom: "30%",
             left: "50%",
-            transform: [{ rotate: "-45deg" }],
+            transform: [{ rotate: isRTL ? "45deg" : "-45deg" }],
             width: width * 0.8,
             resizeMode: "cover",
             height: width * 0.8,
@@ -223,7 +235,7 @@ export const DetailsScreen: FC<DetailsScreenProps> = observer(function DetailsSc
   })
 
   return (
-    <View style={{ flex: 1, backgroundColor: "#FFF3" }}>
+    <View style={{ flex: 1 }}>
       <Animated.ScrollView
         style={[StyleSheet.absoluteFillObject]}
         contentContainerStyle={{ padding: 20, paddingTop: _headerHeight + _tabsHeight + 20 }}

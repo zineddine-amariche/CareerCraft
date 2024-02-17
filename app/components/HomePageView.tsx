@@ -163,7 +163,7 @@ const _data = _months.map((month) => ({
 }))
 
 const _colors = {
-  bg: "#030303",
+  bg: colors.surfacePrimary,
   text: "#EAE9EE",
 }
 const _spacing = 10
@@ -184,7 +184,6 @@ export const HomePageView = observer(function HomePageView(props: HomePageViewPr
   const { style } = props
   const $styles = [$container, style]
 
-  console.log("Constants.statusBarHeight", Constants.statusBarHeight)
 
   let [fontsLoaded] = useFonts({
     LatoRegular: Lato_400Regular,
@@ -330,7 +329,7 @@ export const HomePageView = observer(function HomePageView(props: HomePageViewPr
             return (
               <TouchableOpacity
                 style={{
-                  backgroundColor: colors.surfacePrimary,
+                  backgroundColor: colors.surfaceInvert,
                   marginRight: _spacing,
                   borderRadius: 8,
                   flexDirection: "row",
@@ -402,7 +401,7 @@ export const HomePageView = observer(function HomePageView(props: HomePageViewPr
               style={{
                 marginBottom: _spacing,
                 margin: _spacing,
-                backgroundColor: colors.surfacePrimary,
+                backgroundColor: colors.surfaceInvert,
                 paddingVertical: spacing.sm,
                 gap: spacing.sm,
               }}
