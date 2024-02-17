@@ -11,27 +11,29 @@ const palette = {
   neutral50: "#FBF8F3",
   neutral100: "#d3d4d7",
   neutral150: "#CCCCC3",
-  neutral200: "#a7a8b0",
-  neutral300: "#7b7d88",
-  neutral400: "#4f5161",
-  neutral500: "#232639",
-  neutral600: "#1c1e2e",
-  neutral700: "#151722",
-  neutral800: "#0e0f17",
-  neutral900: "#07080b",
+  neutral200: "#a6acbb",
+  neutral300: "#7a8298",
+  neutral400: "#4d5976",
+  neutral500: "#212f54",
+  neutral600: "#1a2643",
+  neutral700: "#141c32",
+  neutral800: "#0d1322",
+  neutral900: "#070911",
   neutralOverlay: "#4c4d67",
 
-  primary50: "#dc878d",
-  primary200: "#d15f67",
-  primary400: "#c53741",
-  primary600: "#762127",
-  primary800: "#4f161a",
-  primary900: "#270b0d",
+  primary100: "#fdf4cc",
+  primary200: "#fbea9a",
+  primary300: "#f9df67",
+  primary400: "#f7d535",
+  primary500: "#f5ca02",
+  primary600: "#c4a202",
+  primary700: "#937901",
+  primary800: "#625101",
+  primary900: "#312800",
+
 
   angry100: "#F2D6CD",
   angry500: "#C03403",
-
-  secondary50: "#E5C3A6",
 
   overlay20: "rgba(25, 16, 21, 0.2)",
   overlay50: "rgba(25, 16, 21, 0.5)",
@@ -57,15 +59,17 @@ export const colors = {
   /**
    * Text color in many components.
    */
-  textPrimary: palette.grey900,
-  textSecondary: palette.grey600,
-  textBrand: palette.primary400,
+  textPrimary: palette.primary500,
+  textSecondary: palette.neutral500,
+
+  textBrand: palette.neutral50,
   textBrandSecondary: palette.neutral500,
   textBrandSecondaryDark: palette.neutral600,
+
   textInvert: palette.grey50,
   textDim: palette.grey400,
 
-  secondaryTextPrimary: palette.secondary50,
+  secondaryTextPrimary: palette.primary500,
   /**
    * The default color of the screen background.
    */
@@ -95,16 +99,16 @@ export const colors = {
   /**
    * Surface
    */
-  surfaceDark: palette.neutralOverlay,
-  surfacePrimary: palette.neutral800,
-  surfaceSecondaryPlus: palette.neutral150,
+  surfaceDark: palette.neutral900,
+  surfacePrimary: palette.neutral900,
   surfaceSecondary: palette.neutral100,
-  surfaceInvert: palette.neutral700,
+  surfaceSecondaryPlus: palette.neutral150,
+  surfaceInvert: palette.neutral800,
   surfaceBrand: palette.neutral500,
   /**
    * Icon
    */
-  iconPrimary: palette.secondary50,
+  iconPrimary: palette.primary500,
   iconSecondary: palette.primary600,
   iconInvert: palette.primary200,
   /**

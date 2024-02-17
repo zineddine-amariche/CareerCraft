@@ -144,6 +144,8 @@ const $presets = (font, sizes) => ({
     $baseStyle(font, sizes),
     sizes.lg,
     $fontWeightStyles(font).medium,
+    { color: colors.textBrand },
+
   ] as StyleProp<TextStyle>,
 
   formLabel: [$baseStyle(font, sizes), $fontWeightStyles(font).medium] as StyleProp<TextStyle>,
