@@ -1,0 +1,42 @@
+[
+  {
+    "key": "Experience",
+    "date": "2020-01",
+    "Company": "DjeelTech Company | Blida ‚algeria",
+    "job": "Mobile developer (ios / android )",
+    "type": "inbound",
+    "department": "Mobile",
+    "productName": "React Native",
+    "emoji": "react"
+  },
+  {
+    "key": "Experience",
+    "date": "2019-01",
+    "Company": "Another Company | Location",
+    "job": "Another Job",
+    "type": "inbound",
+    "department": "Another Department",
+    "productName": "Another Product",
+    "emoji": "react"
+  },
+  {
+    "key": "Experience",
+    "date": "2019-01",
+    "Company": "Another Company | Location",
+    "job": "Another Job",
+    "type": "inbound",
+    "department": "Another Department",
+    "productName": "Another Product",
+    "emoji": "react"
+  },
+  {
+    "key": "Experience",
+    "date": "2019-01",
+    "Company": "Another Company | Location",
+    "job": "Another Job",
+    "type": "inbound",
+    "department": "Another Department",
+    "productName": "Another Product",
+    "emoji": "react"
+  }
+]

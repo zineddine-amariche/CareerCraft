@@ -1,0 +1,32 @@
+[
+    {
+      "key": "Education",
+      "date": "2018-01",
+      "Company": "University of Algeria | Algiers, Algeria",
+      "job": "Student",
+      "type": "inbound",
+      "department": "Computer Science",
+      "productName": "Bachelor's Degree",
+      "emoji": "graduation-cap"
+    },
+    {
+      "key": "Education",
+      "date": "2018-01",
+      "Company": "University of Algeria | Algiers, Algeria",
+      "job": "Student",
+      "type": "inbound",
+      "department": "Computer Science",
+      "productName": "Bachelor's Degree",
+      "emoji": "graduation-cap"
+    },
+    {
+      "key": "Education",
+      "date": "2018-01",
+      "Company": "University of Algeria | Algiers, Algeria",
+      "job": "Student",
+      "type": "inbound",
+      "department": "Computer Science",
+      "productName": "Bachelor's Degree",
+      "emoji": "graduation-cap"
+    }
+  ]
