@@ -1,14 +1,20 @@
-import { Pressable, StyleSheet, View } from "react-native"
+import { Pressable, View } from "react-native"
 import React from "react"
 import { Text } from "app/components/Text"
-import Animated, { interpolate, useAnimatedStyle, useSharedValue } from "react-native-reanimated"
+import Animated, { interpolate, useAnimatedStyle } from "react-native-reanimated"
 import { sideNavigate } from "app/navigators"
 import { colors, spacing } from "app/theme"
 import { width } from "app/theme/dimensions"
 import { Icon } from "app/components/Icon"
-import Constants from "expo-constants"
+import { TxKeyPath } from "app/i18n"
 
-const HeadHome = ({ headerHeight, headerAnim }) => {
+const HeadHome = ({
+  headerHeight,
+  headerAnim,
+}: {
+  headerHeight: Animated.SharedValue<number>
+  headerAnim: Animated.SharedValue<number>
+}) => {
   const _itemSize = width * 0.35
 
   const balanceStylez = useAnimatedStyle(() => {
@@ -60,16 +66,8 @@ const HeadHome = ({ headerHeight, headerAnim }) => {
           <Icon icon="profileImage" size={spacing.xl} />
         </Pressable>
         <View style={{}}>
-          <Text
-            numberOfLines={1}
-            preset={"heading"}
-            size="lg"
-          >
-            Amariche Zineddine
-          </Text>
-          <Text style={[{}]} preset={"subheading"} size="sm">
-            Full Stack Mobile Developer (MERN stack)
-          </Text>
+          <Text numberOfLines={1} preset={"heading"} size="lg" tx={"Home.user" as TxKeyPath} />
+          <Text preset={"subheading"} size="sm" tx={"Home.job" as TxKeyPath} />
         </View>
       </View>
     </Animated.View>
@@ -77,20 +75,3 @@ const HeadHome = ({ headerHeight, headerAnim }) => {
 }
 
 export default HeadHome
-
-const styles = StyleSheet.create({
-  bold: {
-    fontFamily: "LatoBold",
-  },
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    paddingTop: Constants.statusBarHeight,
-    backgroundColor: colors.surfacePrimary,
-    padding: spacing.sm,
-  },
-  header: {
-    top: Constants.statusBarHeight,
-    left: spacing.sm,
-  },
-})

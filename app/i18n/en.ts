@@ -29,14 +29,7 @@ const en = {
     },
   },
   menus: {
-    masahif: "Masahef",
-    reciters: "Reciters",
-    tafaseer: "Tafaseer",
-    tarajim: "Translation",
-    search: "Search",
-    bookmarks: "Bookmarks",
-    favorites: "Favorites",
-    settings: "Language preferences",
+ 
     home: "Home",
     about: "About",
     languages: "Interface language",
@@ -181,6 +174,19 @@ const en = {
     name:"Zineddine Amariche"
 
   },
+  Home: {
+    user : "Zineddine Amariche",
+    job: " Full Stack Mobile, Web Developer (MERN stack)",
+    currentWork :"currently working on",
+    lastWork: "previously worked on",
+    learning: "Currently learning",
+    colaborating: "Currently collaborating with",
+    currentProjectName: "Mushaf App",
+    lastProjectName: "Diaspo App",
+    learningProjectName: "NextJs",
+    collaborateName: "The Algerian Tech Makers page",
+
+  }
 }
 
 export default en

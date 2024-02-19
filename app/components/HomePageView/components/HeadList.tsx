@@ -1,23 +1,42 @@
 import { View, FlatList } from "react-native"
 import React from "react"
-import { faker } from "@faker-js/faker"
 import Animated, { useAnimatedStyle, Extrapolate, interpolate } from "react-native-reanimated"
 import { width } from "app/theme/dimensions"
 import Card from "./Card"
 import { colors, metrics, spacing } from "app/theme"
 import { Icon } from "app/components/Icon"
 import { Text } from "app/components/Text"
+import { TxKeyPath } from "app/i18n"
 
 const AnimatedFlatlist = Animated.createAnimatedComponent(FlatList)
 
-const emojis = ["😃", "🧘🏻‍♂️", "🌍", "🍞", "🚗", "🎉", "🍆", "react", "🍔"]
+const _headerData = [
+  {
+    key: 1,
+    tx: "Home.currentWork" as TxKeyPath,
+    icon: "material",
+    projectName: "Home.currentProjectName" as TxKeyPath,
+  },
+  {
+    key: 2,
+    tx: "Home.lastWork" as TxKeyPath,
+    icon: "lets",
+    projectName: "Home.lastProjectName" as TxKeyPath,
+  },
 
-const _headerData = [...Array(5).keys()].map((i) => ({
-  key: faker.number.int(),
-  amount: faker.finance.amount(500, 8500, 0, "$"),
-  department: faker.commerce.department(),
-  emoji: emojis[Math.floor(Math.random() * emojis.length)],
-}))
+  {
+    key: 4,
+    tx: "Home.colaborating" as TxKeyPath,
+    icon: "collaborate",
+    projectName: "Home.collaborateName" as TxKeyPath,
+  },
+  {
+    key: 3,
+    tx: "Home.learning" as TxKeyPath,
+    icon: "graduation",
+    projectName: "Home.learningProjectName" as TxKeyPath,
+  },
+]
 
 const HeadList = ({ headerAnim }: { headerAnim: Animated.SharedValue<number> }) => {
   const _itemSize = width * 0.35
@@ -55,61 +74,67 @@ const HeadList = ({ headerAnim }: { headerAnim: Animated.SharedValue<number> }) 
   })
 
   return (
-      <AnimatedFlatlist
-        data={_headerData}
-        keyExtractor={(item) => item.key}
-        horizontal
-        style={[{ flexGrow: 0 }, headerStylez]}
-        showsHorizontalScrollIndicator={false}
-        ItemSeparatorComponent={() => <View style={{ width: spacing.sm  }} />}
-        contentContainerStyle={{ paddingEnd: spacing.lg }}
-        renderItem={({ item, index }) => {
-          return (
-            <Card>
+    <AnimatedFlatlist
+      data={_headerData}
+      keyExtractor={(item) => item.key}
+      horizontal
+      style={[{ flexGrow: 0 }, headerStylez]}
+      showsHorizontalScrollIndicator={false}
+      ItemSeparatorComponent={() => <View style={{ width: spacing.sm }} />}
+      contentContainerStyle={{ paddingEnd: spacing.lg }}
+      renderItem={({ item, index }) => {
+        return (
+          <Card>
+            <View
+              style={{
+                flexDirection: "row",
+                overflow: "hidden",
+                alignItems: "center",
+                justifyContent: "space-between",
+                flex: 1,
+                
+              }}
+            >
               <View
                 style={{
-                  flexDirection: "row",
+                  paddingVertical: spacing.sm,
+                  paddingHorizontal: spacing.md,
                   overflow: "hidden",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  flex: 1,
+                  width:150,
+                  gap: spacing.xxs,
                 }}
               >
-                <View
-                  style={{
-                    paddingVertical: spacing.sm,
-                    paddingHorizontal: spacing.md,
-                    overflow: "hidden",
-                  }}
-                >
-                  <Text preset={"subheading"} style={{ color: colors.textPrimary }}>
-                    currently working on
-                  </Text>
-                  <Text size="xl" style={{ color: colors.textBrandSecondary }} preset="heading">
-                    {"MushafApp"}
-                  </Text>
-                  <Text style={[{ fontSize: 10, opacity: 0.6 }]}>{"From : 10/2023"}</Text>
-                </View>
-                <View
-                  style={{
-                    alignItems: "center",
-                    justifyContent: "center",
-                    flex: 1,
-                    height: "100%",
-                    width: "100%",
-                    backgroundColor: colors.surfaceBrandSecondary,
-                    borderTopRightRadius: metrics.roundedMedium,
-                    borderBottomRightRadius: metrics.roundedMedium,
-                    paddingHorizontal: spacing.xs,
-                  }}
-                >
-                  <Icon icon="react" size={34} color={colors.iconBrand} />
-                </View>
+                <Text preset={"subheading"} size="sm" numberOfLines={1} style={{ color: colors.textPrimary }} tx={item.tx} />
+
+                <Text
+                  tx={item.projectName}
+                  size="md"
+                  style={{ color: colors.textBrandSecondary }}
+                  preset="heading"
+                  numberOfLines={1}
+                ></Text>
+                <Text style={[{ fontSize: 10, opacity: 0.6 }]}>{"From : 10/2023"}</Text>
               </View>
-            </Card>
-          )
-        }}
-      />
+              <View
+                style={{
+                  alignItems: "center",
+                  justifyContent: "center",
+                  flex: 1,
+                  height: "100%",
+                  width: "100%",
+                  backgroundColor: colors.surfaceBrandSecondary,
+                  borderTopRightRadius: metrics.roundedMedium,
+                  borderBottomRightRadius: metrics.roundedMedium,
+                  paddingHorizontal: spacing.xs,
+                }}
+              >
+                <Icon icon={item.icon} size={34} color={colors.iconBrand} />
+              </View>
+            </View>
+          </Card>
+        )
+      }}
+    />
   )
 }
 

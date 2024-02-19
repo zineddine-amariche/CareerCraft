@@ -31,14 +31,6 @@ const ar: Translations = {
     },
   },
   menus: {
-    masahif: "مصاحف",
-    reciters: "القراء",
-    tafaseer: "التفاسير",
-    tarajim: "الترجمة",
-    search: "البحث",
-    bookmarks: "الفواصل",
-    favorites: "المفضلة",
-    settings: "إعدادات اللغة",
     about: "عن التطبيق",
     home: "الرئيسية",
     languages: "لغة الواجهة",
@@ -47,22 +39,6 @@ const ar: Translations = {
     share: "مشاركة التطبيق",
     services: "خدماتنا",
     skills: "المهارات",
-
-    /*
-    contact: "اتصل بنا",
-    share: "مشاركة التطبيق",
-    rate: "تقييم التطبيق",
-    privacyPolicy: "سياسة الخصوصية",
-    termsOfService: "شروط الخدمة",
-    reciters: "القراء",
-    settingsDrawer: {
-      darkMode: "الوضع الليلي",
-      fontSize: "حجم الخط",
-      fontType: "نوع الخط",
-      arabicFont: "الخط العربي",
-      translationFont: "الخط الترجمة",
-    },
-    ¨ */
   },
   index: {
     gotoAyah: "تصفح إلى الآية المختارة",
@@ -196,7 +172,19 @@ const ar: Translations = {
     word: "تتشرف وزارة الشؤون الدينية والأوقاف بخدمة القرآن الكريم وعلومه من خلال اعتماد هذا التطبيق سائلين الله عز وجل أن ينفع المسلمين به.",
     wizaraStaff: "طاقم الوزارة:",
     developementTeam: "فريق التطوير:",
-    name:"زين الدين عماريش"
+    name: "زين الدين عماريش",
+  },
+  Home: {
+    user: "زين الدين عماريش",
+    job: "مطور مواقع و تطبيقات الهاتف الجوال",
+    currentWork: "أعمل حاليا على ",
+    lastWork: "اخر مشروع  ",
+    learning: "أتعلم حاليا ",
+    colaborating: "أتعاون حاليا مع ",
+    currentProjectName: "تطبيق مصحف الجزائر الرسمي",
+    lastProjectName: "تطبيق دياسبو",
+    collaborateName: "صفحة صناع التكولوجيا الجزائريين",
+    learningProjectName: "nextJs",
   },
 }
 
