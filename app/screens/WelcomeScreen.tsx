@@ -70,7 +70,7 @@ export const WelcomeScreen: FC<WelcomeScreenProps> = observer(function WelcomeSc
 
 const $container: ViewStyle = {
   flex: 1,
-  backgroundColor: colors.surfacePrimary,
+  backgroundColor: colors.surfaceBrand,
 }
 
 const $topContainer: ViewStyle = {
