@@ -26,6 +26,6 @@ export const ServicesScreen: FC<ServicesScreenProps> = observer(function Service
 
 const $root: ViewStyle = {
   flex: 1,
-  backgroundColor: colors.textBrandSecondaryDark,
+  backgroundColor: colors.surfaceBrand,
 
 }

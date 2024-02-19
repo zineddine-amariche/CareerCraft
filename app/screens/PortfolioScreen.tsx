@@ -3,6 +3,7 @@ import { observer } from "mobx-react-lite"
 import { ViewStyle } from "react-native"
 import { AppStackScreenProps } from "app/navigators"
 import { Screen, Text } from "app/components"
+import { colors } from "app/theme"
 // import { useNavigation } from "@react-navigation/native"
 // import { useStores } from "app/models"
 
@@ -23,4 +24,5 @@ export const PortfolioScreen: FC<PortfolioScreenProps> = observer(function Portf
 
 const $root: ViewStyle = {
   flex: 1,
+  backgroundColor:colors.surfaceBrand
 }

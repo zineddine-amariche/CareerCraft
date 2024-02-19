@@ -7,7 +7,6 @@ import { Text } from "app/components"
 import { colors, metrics, spacing } from "app/theme"
 import restartApp from "app/utils/restartApp"
 import { translate } from "app/i18n"
-// import { logAnalyticsEvent } from "app/utils/handleAnalytics"
 import i18n from "app/i18n/i18n"
 import { navigate } from "app/navigators/navigationUtilities"
 import { SideStackScreenProps } from "app/navigators/SideNavigator"
@@ -90,7 +89,7 @@ const $card: ViewStyle = {
   paddingVertical: spacing.xs,
   borderRadius: metrics.roundedMedium,
   marginBottom: spacing.md,
-  backgroundColor: colors.white,
+  backgroundColor: colors.surfaceBrand,
   flexDirection: "row",
   gap: spacing.xxs,
 }

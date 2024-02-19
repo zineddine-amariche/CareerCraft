@@ -25,7 +25,6 @@ export const LanguagesScreen: FC<LanguagesScreenProps> = observer(function Langu
   const [selected, setSelected] = useState(null)
   const [notSelected, setNotSelected] = useState([])
 
-
   useEffect(() => {
     const currentLanguage = Languages.find((l) => l === locale)
 
@@ -47,7 +46,7 @@ export const LanguagesScreen: FC<LanguagesScreenProps> = observer(function Langu
           size="sm"
           weight="light"
           tx={`languages.selectedLanguage`}
-          style={{ textAlign: "left", color: colors.white, paddingBottom: spacing.xs }}
+          style={{ textAlign: "left", color: colors.textPrimary, paddingBottom: spacing.xs }}
         ></Text>
         {selected && (
           <RenderCard
@@ -61,7 +60,7 @@ export const LanguagesScreen: FC<LanguagesScreenProps> = observer(function Langu
           size="sm"
           weight="light"
           tx={`languages.otherLanguage`}
-          style={{ textAlign: "left", color: colors.white, paddingBottom: spacing.xs }}
+          style={{ textAlign: "left", color: colors.textPrimary, paddingBottom: spacing.xs }}
         ></Text>
         <View style={{ flex: 1 }}>
           {notSelected.map((item) => (
@@ -90,7 +89,7 @@ const RenderCard: FC<RenderCardProps> = observer(({ language, isActive, setLocal
       <Text
         size="lg"
         tx={`languages.${language}` as TxKeyPath}
-        style={$textStyle}
+        style={[$textStyle,{color: isActive? colors.textBrandSecondary : colors.textPrimary}]}
         weight={language === "ar" && isRTL ? "light" : "medium"}
       />
       {!isActive && (
@@ -108,7 +107,7 @@ const RenderCard: FC<RenderCardProps> = observer(({ language, isActive, setLocal
 
 const $root: ViewStyle = {
   flex: 1,
-  backgroundColor: colors.textBrandSecondaryDark,
+  backgroundColor: colors.surfaceBrand,
 }
 
 const $container: ViewStyle = {
@@ -129,7 +128,7 @@ const $card: ViewStyle = {
 }
 
 const $cardActive: ViewStyle = {
-  borderColor: colors.secondaryTextPrimary,
+  borderColor: colors.surfaceBrandSecondary,
 }
 
 const $shadow: ViewStyle = {
@@ -141,6 +140,6 @@ const $shadow: ViewStyle = {
 }
 const $textStyle: TextStyle = {
   textAlign: "left",
-  color: colors.white,
+  color: colors.textPrimary,
   lineHeight: 24,
 }

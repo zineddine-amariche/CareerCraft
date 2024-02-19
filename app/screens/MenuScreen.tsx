@@ -50,8 +50,8 @@ export const MenuScreen: FC<MenuScreenProps> = function MenuScreen(_props) {
 const $container: ViewStyle = {
   paddingTop: spacing.md,
   flex: 1,
-  backgroundColor: colors.textBrandSecondaryDark,
   borderBottomRightRadius: metrics.roundedLarge,
+  backgroundColor: colors.surfaceBrand,
 }
 const $itemContainer: ViewStyle = {
   flexDirection: "row",
@@ -62,5 +62,5 @@ const $itemContainer: ViewStyle = {
 const $itemText: TextStyle = {
   marginLeft: 20,
   fontSize: 18,
-  color: colors.white,
+  color: colors.textPrimary,
 }

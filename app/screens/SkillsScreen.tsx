@@ -5,9 +5,6 @@ import { AppStackScreenProps } from "app/navigators"
 import { Screen, Text } from "app/components"
 import { useSideHeader } from "app/utils/useSideHeader"
 import { colors } from "app/theme"
-// import { useNavigation } from "@react-navigation/native"
-// import { useStores } from "app/models"
-
 interface SkillsScreenProps extends AppStackScreenProps<"Skills"> {}
 
 export const SkillsScreen: FC<SkillsScreenProps> = observer(function SkillsScreen() {
@@ -26,6 +23,5 @@ export const SkillsScreen: FC<SkillsScreenProps> = observer(function SkillsScree
 
 const $root: ViewStyle = {
   flex: 1,
-  backgroundColor: colors.textBrandSecondaryDark,
-
+  backgroundColor: colors.surfaceBrand,
 }
