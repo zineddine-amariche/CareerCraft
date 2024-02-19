@@ -137,14 +137,14 @@ const $presets = (font, sizes) => ({
     $baseStyle(font, sizes),
     sizes.xxxl,
     $fontWeightStyles(font).bold,
-    { color: colors.textBrand },
+    { color: colors.textPrimary },
   ] as StyleProp<TextStyle>,
 
   subheading: [
     $baseStyle(font, sizes),
-    sizes.lg,
-    $fontWeightStyles(font).medium,
-    { color: colors.textBrand },
+    sizes.xs, 
+    $fontWeightStyles(font).light,
+    { color: colors.textPrimary },
 
   ] as StyleProp<TextStyle>,
 
@@ -160,7 +160,13 @@ const $presets = (font, sizes) => ({
     $baseStyle(font, sizes),
     sizes.xxl,
     $fontWeightStyles(font).medium,
-    { color: colors.textBrand },
+    { color: colors.textPrimary },
+  ] as StyleProp<TextStyle>,
+
+  subtitle: [
+    $baseStyle(font, sizes),
+    $fontWeightStyles(font).medium,
+    { color: colors.textPrimary },
   ] as StyleProp<TextStyle>,
 
   ayah: [
