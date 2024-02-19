@@ -55,14 +55,14 @@ const HeadList = ({ headerAnim }: { headerAnim: Animated.SharedValue<number> }) 
   })
 
   return (
-    <View>
       <AnimatedFlatlist
         data={_headerData}
         keyExtractor={(item) => item.key}
         horizontal
         style={[{ flexGrow: 0 }, headerStylez]}
         showsHorizontalScrollIndicator={false}
-        ItemSeparatorComponent={() => <View style={{ width: spacing.sm }} />}
+        ItemSeparatorComponent={() => <View style={{ width: spacing.sm  }} />}
+        contentContainerStyle={{ paddingEnd: spacing.lg }}
         renderItem={({ item, index }) => {
           return (
             <Card>
@@ -72,8 +72,6 @@ const HeadList = ({ headerAnim }: { headerAnim: Animated.SharedValue<number> }) 
                   overflow: "hidden",
                   alignItems: "center",
                   justifyContent: "space-between",
-                  //
-                  // gap: spacing.sm,
                   flex: 1,
                 }}
               >
@@ -94,7 +92,6 @@ const HeadList = ({ headerAnim }: { headerAnim: Animated.SharedValue<number> }) 
                 </View>
                 <View
                   style={{
-                    //
                     alignItems: "center",
                     justifyContent: "center",
                     flex: 1,
@@ -113,7 +110,6 @@ const HeadList = ({ headerAnim }: { headerAnim: Animated.SharedValue<number> }) 
           )
         }}
       />
-    </View>
   )
 }
 

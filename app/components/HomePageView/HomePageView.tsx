@@ -1,7 +1,6 @@
 import * as React from "react"
 import { StyleProp, ViewStyle } from "react-native"
 import { observer } from "mobx-react-lite"
-import { spacing } from "app/theme"
 import { View } from "react-native"
 import Constants from "expo-constants"
 import { faker } from "@faker-js/faker"
@@ -37,7 +36,7 @@ export const HomePageView = observer(function HomePageView(props: HomePageViewPr
   })
 
   return (
-    <Screen>
+    <Screen style={$root}>
       <View
         style={$header}
         onLayout={(ev) => {
@@ -59,7 +58,11 @@ export const HomePageView = observer(function HomePageView(props: HomePageViewPr
 
 const $header: ViewStyle = {
   top: Constants.statusBarHeight,
-  left: spacing.sm,
   position: "absolute",
   zIndex: 1,
+}
+
+const $root: ViewStyle = {
+  flex: 1,
+  alignItems:"center"
 }
