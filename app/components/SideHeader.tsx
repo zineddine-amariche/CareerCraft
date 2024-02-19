@@ -51,12 +51,12 @@ const $wrapper: ViewStyle = {
 
 const $container: ViewStyle = {
   width: "100%",
-  backgroundColor: colors.surfacePrimary,
+  backgroundColor: colors.background,
 }
 
 const $title: TextStyle = {
   textAlign: "left",
-  color: colors.secondaryTextPrimary,
+  color: colors.textPrimary,
 }
 
 const $actionIconContainer: ViewStyle = {
