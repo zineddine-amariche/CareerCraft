@@ -1,67 +1,19 @@
 import * as React from "react"
-import { Pressable, StyleProp, ViewStyle } from "react-native"
+import { StyleProp, ViewStyle } from "react-native"
 import { observer } from "mobx-react-lite"
-import { colors, spacing } from "app/theme"
-import {
-  SafeAreaView,
-  SectionList,
-  Text,
-  View,
-  StyleSheet,
-  FlatList,
-} from "react-native"
+import { spacing } from "app/theme"
+import { View } from "react-native"
 import Constants from "expo-constants"
 import { faker } from "@faker-js/faker"
-import Animated, {
-  Extrapolate,
-  interpolate,
-  withTiming,
-  useSharedValue,
-  useAnimatedStyle,
-  useAnimatedScrollHandler,
-} from "react-native-reanimated"
-import { useFonts, Lato_400Regular, Lato_700Bold } from "@expo-google-fonts/lato"
-import { Icon } from "../Icon"
-import { TouchableOpacity } from "react-native-gesture-handler"
-import { height, width } from "app/theme/dimensions"
+import { withTiming, useSharedValue, useAnimatedScrollHandler } from "react-native-reanimated"
+
+import { height } from "app/theme/dimensions"
 import HeadHome from "./components/HeadHome"
-
-const AnimatedFlatList = Animated.createAnimatedComponent(FlatList)
-const AnimatedSectionList = Animated.createAnimatedComponent(SectionList)
-
+import HeadList from "./components/HeadList"
+import InfoList from "./components/InfoList"
+import { Screen } from "../Screen"
 
 faker.seed(10)
-const emojis = ["😃", "🧘🏻‍♂️", "🌍", "🍞", "🚗", "🎉", "🍆", "react", "🍔"]
-
-const _months = ["Experience", "Education", "Certificates"]
-
-const _headerData = [...Array(5).keys()].map((i) => ({
-  key: faker.number.int(),
-  amount: faker.finance.amount(500, 8500, 0, "$"),
-  department: faker.commerce.department(),
-  emoji: emojis[Math.floor(Math.random() * emojis.length)],
-}))
-
-const experienceData = require("assets/db/Home/ProgressInformation.json")
-const educationData = require("assets/db/Home/Experiences.json")
-const certificatesData = require("assets/db/Home/Certificates.json")
-
-const _data = _months.map((month) => ({
-  title: month,
-  key: month,
-  data:
-    month === "Experience"
-      ? experienceData
-      : month === "Education"
-      ? educationData
-      : certificatesData,
-}))
-
-const _colors = {
-  bg: colors.surfacePrimary,
-  text: "#EAE9EE",
-}
-const _itemSize = width * 0.35
 
 export interface HomePageViewProps {
   /**
@@ -74,10 +26,6 @@ export interface HomePageViewProps {
  * Describe your component here
  */
 export const HomePageView = observer(function HomePageView(props: HomePageViewProps) {
-  let [fontsLoaded] = useFonts({
-    LatoRegular: Lato_400Regular,
-    LatoBold: Lato_700Bold,
-  })
   const scrollY = useSharedValue(0)
   const headerAnim = useSharedValue(0)
   const headerHeight = useSharedValue(height)
@@ -88,56 +36,10 @@ export const HomePageView = observer(function HomePageView(props: HomePageViewPr
     headerAnim.value = y
   })
 
-  const dummyHeaderStylez = useAnimatedStyle(() => {
-    return {
-      height: headerHeight.value,
-    }
-  })
-
-  const headerStylez = useAnimatedStyle(() => {
-    return {
-      transform: [
-        {
-          perspective: _itemSize * 5,
-        },
-        {
-          translateY: interpolate(
-            headerAnim.value,
-            [0, _itemSize],
-            [0, -_itemSize / 2],
-            Extrapolate.CLAMP,
-          ),
-        },
-        {
-          rotateX: `${interpolate(
-            headerAnim.value,
-            [0, _itemSize],
-            [0, 90],
-            Extrapolate.CLAMP,
-          )}deg`,
-        },
-      ],
-      opacity: interpolate(
-        headerAnim.value,
-        [0, _itemSize / 2, _itemSize],
-        [1, 1, 0],
-        Extrapolate.CLAMP,
-      ),
-    }
-  })
-
-  if (!fontsLoaded) {
-    return (
-      <View style={styles.container}>
-        <Text>Loading...</Text>
-      </View>
-    )
-  }
-
   return (
-    <SafeAreaView style={styles.container}>
+    <Screen>
       <View
-        style={[styles.header, { position: "absolute", zIndex: 1 }]}
+        style={$header}
         onLayout={(ev) => {
           if (headerHeight.value === ev.nativeEvent.layout.height) {
             return
@@ -147,191 +49,17 @@ export const HomePageView = observer(function HomePageView(props: HomePageViewPr
           })
         }}
       >
-        <HeadHome headerHeight={headerHeight} headerAnim={headerAnim}  />
-
-        <AnimatedFlatList
-          data={_headerData}
-          keyExtractor={(item) => item.key}
-          horizontal
-          style={[{ flexGrow: 0 }, headerStylez]}
-          showsHorizontalScrollIndicator={false}
-          renderItem={({ item, index }) => {
-            return (
-              <TouchableOpacity
-                style={{
-                  backgroundColor: colors.surfaceInvert,
-                  marginRight: spacing.sm,
-                  borderRadius: 8,
-                  flexDirection: "row",
-                  overflow: "hidden",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                }}
-                onPress={() => {
-                  // navigate("Demo",{screen:"DemoShowroom"})
-                }}
-              >
-                <View style={{ padding: spacing.md, gap: spacing.xs - 2 }}>
-                  <Text style={[styles.bold, { fontSize: 12, color: _colors.text }]}>
-                    currently working on
-                  </Text>
-                  <Text style={[styles.bold, { fontSize: 16, color: colors.secondaryTextPrimary }]}>
-                    {"MushafApp"}
-                  </Text>
-                  <Text
-                    style={[
-                      styles.regular,
-                      { fontSize: 10, opacity: 0.6, color: colors.secondaryTextPrimary },
-                    ]}
-                  >
-                    {"From : 10/2023"}
-                  </Text>
-                </View>
-                <View
-                  style={{
-                    width: 1,
-                    height: "100%",
-                    opacity: 0.1,
-                    backgroundColor: colors.secondaryTextPrimary,
-                  }}
-                />
-                <View style={{ padding: spacing.md }}>
-                  <Icon icon="react" size={34} color={colors.secondaryTextPrimary} />
-                </View>
-              </TouchableOpacity>
-            )
-          }}
-        />
+        <HeadHome headerHeight={headerHeight} headerAnim={headerAnim} />
+        <HeadList headerAnim={headerAnim} />
       </View>
-      <AnimatedSectionList
-        sections={_data}
-        keyExtractor={(item) => item.key}
-        onScroll={onScroll}
-        ListHeaderComponent={<Animated.View style={dummyHeaderStylez} />}
-        renderSectionHeader={({ section: { title } }) => (
-          <View style={{ backgroundColor: `${_colors.bg}cc` }}>
-            <Text
-              style={[
-                styles.bold,
-                {
-                  fontSize: 24,
-                  color: _colors.text,
-                  padding: spacing.sm,
-                  marginVertical: spacing.sm,
-                },
-              ]}
-            >
-              {title}
-            </Text>
-          </View>
-        )}
-        renderItem={({ item }) => {
-          return (
-            <View
-              style={{
-                marginBottom: spacing.sm,
-                margin: spacing.sm,
-                backgroundColor: colors.surfaceInvert,
-                paddingVertical: spacing.sm,
-                gap: spacing.sm,
-              }}
-            >
-              <View style={{ paddingHorizontal: spacing.sm }}>
-                <Text
-                  style={[
-                    styles.bold,
-                    {
-                      color: colors.textInvert,
-                      fontSize: 10,
-                      opacity: 0.6,
-                    },
-                  ]}
-                >
-                  {item.date} - Today ..
-                </Text>
-              </View>
-
-              <View
-                style={{
-                  flexDirection: "row",
-                  paddingHorizontal: spacing.sm + 2,
-                }}
-              >
-                <View
-                  style={{
-                    width: 36,
-                    height: 36,
-                    borderRadius: 8,
-                    backgroundColor: `${_colors.text}16`,
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
-                  <Icon icon="react" color={colors.secondaryTextPrimary} size={spacing.xl} />
-                </View>
-                <View style={{ paddingHorizontal: spacing.xs }}>
-                  <Text
-                    style={[
-                      styles.bold,
-                      {
-                        color: colors.secondaryTextPrimary,
-                        fontSize: 16,
-                      },
-                    ]}
-                  >
-                    {item.Company}
-                  </Text>
-                  <Text style={[styles.regular, { color: colors.textInvert, opacity: 0.6 }]}>
-                    {item.job}
-                  </Text>
-                </View>
-                <View
-                  style={{
-                    flexGrow: 1,
-                    alignItems: "flex-end",
-                    justifyContent: "flex-end",
-                  }}
-                ></View>
-              </View>
-
-              <View style={{ flex: 1, paddingHorizontal: spacing.sm + 2, gap: spacing.sm }}>
-                <Text style={{ fontSize: 12, color: "#FFF3" }} numberOfLines={2}>
-                  In order to embark on a new experience and enhance my skills, I started here in
-                  developing phone applications through React Native. I ma currently working on Mac,
-                  aiming to develop phone applications and upload them to the App Store. So far, I
-                  have learned new things and gained years of experience after my interaction with
-                  developers who have over 15 years of expertise ni the field. Iwas able to quickly
-                  adapt ot hte team.
-                </Text>
-              </View>
-            </View>
-          )
-        }}
-      />
-    </SafeAreaView>
+      <InfoList onScroll={onScroll} headerHeight={headerHeight} />
+    </Screen>
   )
 })
 
-const $container: ViewStyle = {
-  justifyContent: "center",
+const $header: ViewStyle = {
+  top: Constants.statusBarHeight,
+  left: spacing.sm,
+  position: "absolute",
+  zIndex: 1,
 }
-
-const styles = StyleSheet.create({
-  regular: {
-    fontFamily: "LatoRegular",
-  },
-  bold: {
-    fontFamily: "LatoBold",
-  },
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    paddingTop: Constants.statusBarHeight,
-    backgroundColor: _colors.bg,
-    padding: spacing.sm,
-  },
-  header: {
-    top: Constants.statusBarHeight,
-    left: spacing.sm,
-  },
-})
