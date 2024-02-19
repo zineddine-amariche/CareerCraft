@@ -118,6 +118,9 @@ export const iconRegistry = {
   collaborate: require("../../assets/icons/collaborate.png"),
   profileImage: require("../../assets/icons/profileImage.png"),
   fluent_settings: require("../../assets/icons/fluent_settings.png"),
+  graduation : require("../../assets/icons/bxs_graduation.png"),
+  material : require("../../assets/icons/material.png"),
+  lets : require("../../assets/icons/lets.png"),
 }
 
 const $imageStyleBase: ImageStyle = {

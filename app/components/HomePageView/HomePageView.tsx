@@ -64,5 +64,5 @@ const $header: ViewStyle = {
 
 const $root: ViewStyle = {
   flex: 1,
-  alignItems:"center"
+  alignItems: "center",
 }
