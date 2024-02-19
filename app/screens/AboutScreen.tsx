@@ -29,6 +29,6 @@ export const AboutScreen: FC<AboutScreenProps> = observer(function AboutScreen()
 
 const $root: ViewStyle = {
   flex: 1,
-  backgroundColor: colors.textBrandSecondaryDark,
+  backgroundColor: colors.surfaceBrand,
 
 }

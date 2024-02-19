@@ -29,6 +29,5 @@ export const ContactScreen: FC<ContactScreenProps> = observer(function ContactSc
 
 const $root: ViewStyle = {
   flex: 1,
-  backgroundColor: colors.textBrandSecondaryDark,
-  
+  backgroundColor: colors.surfaceBrand,
 }
