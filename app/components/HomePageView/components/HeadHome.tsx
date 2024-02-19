@@ -52,7 +52,8 @@ const HeadHome = ({ headerHeight, headerAnim }) => {
               alignItems: "center",
               justifyContent: "center",
               borderWidth: 1,
-              borderColor: colors.secondaryTextPrimary,
+              borderColor: colors.borderPrimary,
+              backgroundColor: colors.surfaceDark,
             },
           ]}
         >
@@ -60,12 +61,6 @@ const HeadHome = ({ headerHeight, headerAnim }) => {
         </Pressable>
         <View style={{}}>
           <Text
-            style={
-              [
-                // styles.regular,
-                // { fontSize: 23, color: colors.secondaryTextPrimary, textTransform: "uppercase" },
-              ]
-            }
             numberOfLines={1}
             preset={"heading"}
             size="lg"
