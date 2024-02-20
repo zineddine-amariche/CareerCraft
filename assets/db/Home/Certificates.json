@@ -2,34 +2,41 @@
   {
     "name": "certificate1",
     "key": "Certificates",
-    "date": "2021-01-01",
+    "date": "2020/2021",
     "Company": "Certificate Provider",
     "job": "Certificate Name",
     "type": "certificate",
     "department": "Certificate Department",
     "productName": "Certificate Product",
-    "emoji": "certificate"
+    "emoji": "certificate",
+    "icon":"diploma3"
+
+
   },
   {
     "name": "certificate2",
     "key": "Certificates",
-    "date": "2021-01-31",
+    "date": "2016/2017",
     "Company": "Certificate Provider",
     "job": "Certificate Name",
     "type": "certificate",
     "department": "Certificate Department",
     "productName": "Certificate Product",
-    "emoji": "certificate"
+    "emoji": "certificate",
+    "icon":"diploma3"
+
   },
   {
     "name": "certificate3",
     "key": "Certificates",
-    "date": "2020-09-01",
+    "date": "2017/2020",
     "Company": "Certificate Provider",
     "job": "Certificate Name",
     "type": "certificate",
     "department": "Certificate Department",
     "productName": "Certificate Product",
-    "emoji": "certificate"
+    "emoji": "certificate",
+    "icon":"diploma3"
+
   }
 ]
