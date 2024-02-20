@@ -1,5 +1,4 @@
 import { View, ViewStyle } from "react-native"
-import React from "react"
 import Card from "./Card"
 import { Text } from "app/components/Text"
 import { Icon } from "app/components/Icon"
@@ -20,7 +19,6 @@ const InnerFList = ({ items }) => {
         >
           {items.date}
         </Text>
-
         <View
           style={{
             flexDirection: "row",
@@ -38,9 +36,9 @@ const InnerFList = ({ items }) => {
               justifyContent: "center",
             }}
           >
-            <Icon icon="react" size={spacing.xl} color={colors.iconBrand} />
+            <Icon icon={items.icon} size={spacing.lg} color={colors.iconBrand} />
           </View>
-          <View style={{}}>
+          <View style={{ flex: 1 }}>
             <Text
               preset={"title"}
               numberOfLines={1}
@@ -67,7 +65,6 @@ const InnerFList = ({ items }) => {
 }
 
 export default InnerFList
-
 
 const $container: ViewStyle = {
   padding: spacing.sm,
