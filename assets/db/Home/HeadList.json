@@ -1,0 +1,27 @@
+[
+  {
+    "key": 1,
+    "tx": "Home.currentWork",
+    "icon": "material",
+    "projectName": "Home.currentProjectName"
+  },
+  {
+    "key": 2,
+    "tx": "Home.lastWork",
+    "icon": "lets",
+    "projectName": "Home.lastProjectName"
+  },
+
+  {
+    "key": 4,
+    "tx": "Home.colaborating",
+    "icon": "collaborate",
+    "projectName": "Home.collaborateName"
+  },
+  {
+    "key": 3,
+    "tx": "Home.learning",
+    "icon": "graduation",
+    "projectName": "Home.learningProjectName"
+  }
+]
