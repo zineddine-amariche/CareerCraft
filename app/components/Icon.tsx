@@ -121,6 +121,11 @@ export const iconRegistry = {
   graduation : require("../../assets/icons/bxs_graduation.png"),
   material : require("../../assets/icons/material.png"),
   lets : require("../../assets/icons/lets.png"),
+  web: require("../../assets/icons/web.png"),
+  mobile: require("../../assets/icons/mobile.png"),
+  diploma: require("../../assets/icons/diploma.png"),
+  diploma2: require("../../assets/icons/diploma2.png"),
+  diploma3: require("../../assets/icons/diploma3.png"),
 }
 
 const $imageStyleBase: ImageStyle = {
