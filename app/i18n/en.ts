@@ -185,6 +185,10 @@ const en = {
     lastProjectName: "Diaspo App",
     learningProjectName: "NextJs",
     collaborateName: "The Algerian Tech Makers page",
+    experience:"Experience",
+    education:"Education",
+    certificates:"Certificates",
+    
 
   }
 }

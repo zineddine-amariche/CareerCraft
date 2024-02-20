@@ -185,6 +185,9 @@ const fr: Translations = {
     lastProjectName :"Application Diaspo",
     learningProjectName :"NextJs",
     collaborateName :"Page des technologues algériens",
+    experience: "Expérience",
+    education: "Éducation",
+    certificates: "Certificats",
 
   },
 }

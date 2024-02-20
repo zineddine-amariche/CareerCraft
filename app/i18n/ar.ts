@@ -185,6 +185,9 @@ const ar: Translations = {
     lastProjectName: "تطبيق دياسبو",
     collaborateName: "صفحة صناع التكولوجيا الجزائريين",
     learningProjectName: "nextJs",
+    experience:"الخبرة",
+    education:"المستوى التعليمي",
+    certificates:"الشهادات",
   },
 }
 
