@@ -73,7 +73,7 @@ const HeadList = ({ headerAnim }: { headerAnim: Animated.SharedValue<number> }) 
                   paddingVertical: spacing.sm,
                   paddingHorizontal: spacing.md,
                   overflow: "hidden",
-                  width: 150,
+                  width: width * 0.5,
                   gap: spacing.xxs,
                 }}
               >
