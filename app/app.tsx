@@ -30,6 +30,8 @@ import { customFontsToLoad } from "./theme"
 import Config from "./config"
 import { GestureHandlerRootView } from "react-native-gesture-handler"
 import { ViewStyle } from "react-native"
+import { translationsObject } from "./utils/loadTranlations"
+import { addNewResources } from "./i18n"
 
 export const NAVIGATION_PERSISTENCE_KEY = "NAVIGATION_STATE"
 
@@ -70,6 +72,11 @@ function App(props: AppProps) {
   } = useNavigationPersistence(storage, NAVIGATION_PERSISTENCE_KEY)
 
   const [areFontsLoaded] = useFonts(customFontsToLoad)
+
+  // Load translations to i18n from Masahif && Reciters
+  translationsObject.forEach((translation) => {
+    addNewResources(translation)
+  })
 
   const { rehydrated } = useInitialRootStore(() => {
     // This runs after the root store has been initialized and rehydrated.

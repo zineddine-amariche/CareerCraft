@@ -10,33 +10,7 @@ import { TxKeyPath } from "app/i18n"
 
 const AnimatedFlatlist = Animated.createAnimatedComponent(FlatList)
 
-const _headerData = [
-  {
-    key: 1,
-    tx: "Home.currentWork" as TxKeyPath,
-    icon: "material",
-    projectName: "Home.currentProjectName" as TxKeyPath,
-  },
-  {
-    key: 2,
-    tx: "Home.lastWork" as TxKeyPath,
-    icon: "lets",
-    projectName: "Home.lastProjectName" as TxKeyPath,
-  },
-
-  {
-    key: 4,
-    tx: "Home.colaborating" as TxKeyPath,
-    icon: "collaborate",
-    projectName: "Home.collaborateName" as TxKeyPath,
-  },
-  {
-    key: 3,
-    tx: "Home.learning" as TxKeyPath,
-    icon: "graduation",
-    projectName: "Home.learningProjectName" as TxKeyPath,
-  },
-]
+const _headerData = require("assets/db/Home/HeadList.json")
 
 const HeadList = ({ headerAnim }: { headerAnim: Animated.SharedValue<number> }) => {
   const _itemSize = width * 0.35
@@ -92,7 +66,6 @@ const HeadList = ({ headerAnim }: { headerAnim: Animated.SharedValue<number> }) 
                 alignItems: "center",
                 justifyContent: "space-between",
                 flex: 1,
-                
               }}
             >
               <View
@@ -100,14 +73,20 @@ const HeadList = ({ headerAnim }: { headerAnim: Animated.SharedValue<number> }) 
                   paddingVertical: spacing.sm,
                   paddingHorizontal: spacing.md,
                   overflow: "hidden",
-                  width:150,
+                  width: 150,
                   gap: spacing.xxs,
                 }}
               >
-                <Text preset={"subheading"} size="sm" numberOfLines={1} style={{ color: colors.textPrimary }} tx={item.tx} />
+                <Text
+                  preset={"subheading"}
+                  size="sm"
+                  numberOfLines={1}
+                  style={{ color: colors.textPrimary }}
+                  tx={item.tx as TxKeyPath}
+                />
 
                 <Text
-                  tx={item.projectName}
+                  tx={item.projectName as TxKeyPath}
                   size="md"
                   style={{ color: colors.textBrandSecondary }}
                   preset="heading"
